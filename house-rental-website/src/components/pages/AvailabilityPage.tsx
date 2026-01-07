@@ -93,17 +93,18 @@ const AvailabilityPage: React.FC<AvailabilityPageProps> = ({ onBack, onBookNow }
         const availability: DayStatus[] = [];
 
         for (let day = 1; day <= daysInMonth; day++) {
-            const currentDate = new Date(year, month, day);
-            const dateString = currentDate.toISOString().split('T')[0];
+            // Create current date string directly
+            const currentDateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
 
-            // Find reservations that overlap with this date
+            // Find reservations that overlap with this date using simple string comparison
             const overlappingReservation = reservations.find(reservation => {
                 if (reservation.idRoom !== roomId) return false;
 
-                const checkInStr = reservation.checkIn.split('T')[0];
-                const checkOutStr = reservation.checkOut.split('T')[0];
-                const currentDateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+                // Extract date strings from database (ignore time and timezone completely)
+                const checkInStr = reservation.checkIn.split('T')[0]; // "2026-01-18"
+                const checkOutStr = reservation.checkOut.split('T')[0]; // "2026-01-20"
 
+                // Simple string comparison - works because YYYY-MM-DD format sorts correctly
                 return currentDateStr >= checkInStr && currentDateStr <= checkOutStr;
             });
 
@@ -114,7 +115,7 @@ const AvailabilityPage: React.FC<AvailabilityPageProps> = ({ onBack, onBookNow }
             }
 
             availability.push({
-                date: dateString,
+                date: currentDateStr,
                 status,
                 reservation: overlappingReservation
             });

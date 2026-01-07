@@ -1,4 +1,4 @@
-const API_BASE_URL = 'http://localhost:3001/api';
+export const API_BASE_URL = 'https://rental-house-be.vercel.app/api';
 
 export interface ReservationData {
     fullName: string;
