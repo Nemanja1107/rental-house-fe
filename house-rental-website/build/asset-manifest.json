@@ -1,0 +1,29 @@
+{
+  "files": {
+    "main.css": "/static/css/main.2f6995fb.css",
+    "main.js": "/static/js/main.ae07c918.js",
+    "static/media/CB0A4822.jpg": "/static/media/CB0A4822.d3b65c3818fdc11ff807.jpg",
+    "static/media/CB0A4813.jpg": "/static/media/CB0A4813.723b44411ecf8d731bc0.jpg",
+    "static/media/CB0A4782.jpg": "/static/media/CB0A4782.6f39dd3ae26d8a4d78f5.jpg",
+    "static/media/CB0A4806.jpg": "/static/media/CB0A4806.864c53b4fa86a1e73514.jpg",
+    "static/media/CB0A4831.jpg": "/static/media/CB0A4831.a0d75adb92654bc72826.jpg",
+    "static/media/CB0A4790.jpg": "/static/media/CB0A4790.7930e0a61e5c2e6bcbbe.jpg",
+    "static/media/CB0A4810.jpg": "/static/media/CB0A4810.138e047469ac7b3b0c82.jpg",
+    "static/media/CB0A4838.jpg": "/static/media/CB0A4838.6f776b61bc9bfe74527a.jpg",
+    "static/media/CB0A4835.jpg": "/static/media/CB0A4835.8673e8789022be462fe5.jpg",
+    "static/media/DSC_8624-copy-2-scaled.jpg": "/static/media/DSC_8624-copy-2-scaled.2c371ab6e5b6b371bf46.jpg",
+    "static/media/rafting.jpg": "/static/media/rafting.b286694fb3f98f8b4aae.jpg",
+    "static/media/crkva.jpg": "/static/media/crkva.bd609be7e455f417929b.jpg",
+    "static/media/na-drini-cuprija.jpg": "/static/media/na-drini-cuprija.ec252f3cd639a4e1a186.jpg",
+    "static/media/viber_slika_2025-12-17_18-36-56-619.jpg": "/static/media/viber_slika_2025-12-17_18-36-56-619.59a4080cd2019e32fd0a.jpg",
+    "static/media/nature.jpg": "/static/media/nature.f9f238d449ff2822546f.jpg",
+    "static/media/Logo.png": "/static/media/Logo.2be5ab0bf09ae92f0e85.png",
+    "index.html": "/index.html",
+    "main.2f6995fb.css.map": "/static/css/main.2f6995fb.css.map",
+    "main.ae07c918.js.map": "/static/js/main.ae07c918.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.2f6995fb.css",
+    "static/js/main.ae07c918.js"
+  ]
+}
