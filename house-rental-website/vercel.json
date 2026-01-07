@@ -19,6 +19,26 @@
             "dest": "BE/index.js"
         },
         {
+            "src": "/static/(.*)",
+            "dest": "FE/house-rental-website/build/static/$1"
+        },
+        {
+            "src": "/favicon.ico",
+            "dest": "FE/house-rental-website/build/favicon.ico"
+        },
+        {
+            "src": "/manifest.json",
+            "dest": "FE/house-rental-website/build/manifest.json"
+        },
+        {
+            "src": "/logo192.png",
+            "dest": "FE/house-rental-website/build/logo192.png"
+        },
+        {
+            "src": "/logo512.png",
+            "dest": "FE/house-rental-website/build/logo512.png"
+        },
+        {
             "src": "/(.*)",
             "dest": "FE/house-rental-website/build/index.html"
         }
