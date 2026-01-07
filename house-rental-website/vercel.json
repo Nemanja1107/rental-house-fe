@@ -1,0 +1,29 @@
+{
+    "version": 2,
+    "builds": [
+        {
+            "src": "BE/index.js",
+            "use": "@vercel/node"
+        },
+        {
+            "src": "FE/house-rental-website/package.json",
+            "use": "@vercel/static-build",
+            "config": {
+                "distDir": "dist"
+            }
+        }
+    ],
+    "routes": [
+        {
+            "src": "/api/(.*)",
+            "dest": "BE/index.js"
+        },
+        {
+            "src": "/(.*)",
+            "dest": "FE/house-rental-website/$1"
+        }
+    ],
+    "env": {
+        "NODE_ENV": "production"
+    }
+}
