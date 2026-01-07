@@ -9,7 +9,7 @@
             "src": "FE/house-rental-website/package.json",
             "use": "@vercel/static-build",
             "config": {
-                "distDir": "dist"
+                "distDir": "build"
             }
         }
     ],
@@ -20,7 +20,7 @@
         },
         {
             "src": "/(.*)",
-            "dest": "FE/house-rental-website/$1"
+            "dest": "FE/house-rental-website/build/index.html"
         }
     ],
     "env": {
