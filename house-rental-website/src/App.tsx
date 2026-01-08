@@ -22,7 +22,7 @@ import sobaBracni from './assets/images/soba-bracni.jpg';
 import kupatilo1 from './assets/images/kupatilo-1.jpg';
 import cb4784 from './assets/images/CB0A4784.jpg';
 import hodnik from './assets/images/hodnik.jpg';
-import stepenice from './assets/images/Stepenice.jpg';
+import stepenice from './assets/images/stepenice.jpg';
 import cb4793 from './assets/images/CB0A4793.jpg';
 import cb4795 from './assets/images/CB0A4795.jpg';
 import cb4800 from './assets/images/CB0A4800.jpg';
