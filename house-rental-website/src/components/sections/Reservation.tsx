@@ -318,7 +318,7 @@ const Reservation: React.FC<ReservationProps> = ({
                                     </div>
                                     <div>
                                         <p className="text-sm font-medium text-white">{t('email')}</p>
-                                        <p className="text-gray-300">info@rentalhouse.com</p>
+                                        <p className="text-gray-300">forestbath586@gmail.com</p>
                                     </div>
                                 </div>
 

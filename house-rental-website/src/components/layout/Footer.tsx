@@ -104,7 +104,7 @@ const Footer: React.FC = () => {
                                     className="text-gray-300 hover:text-blue-400 transition-colors duration-200"
                                     style={{ cursor: 'default' }}
                                 >
-                                    stannadancajnice@gmail.com
+                                    forestbath586@gmail.com
                                 </a>
                             </div>
                         </div>

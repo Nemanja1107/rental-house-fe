@@ -37,7 +37,7 @@ const AvailabilityPage: React.FC<AvailabilityPageProps> = ({ onBack, onBookNow }
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string>('');
 
-    // Room data - updated to match backend room IDs
+    // Room data - updated to match backend room IDs with enhanced descriptions
     const rooms: RoomData[] = [
         {
             id: 'room-101',
@@ -45,31 +45,31 @@ const AvailabilityPage: React.FC<AvailabilityPageProps> = ({ onBack, onBookNow }
             image: room101Image,
             capacity: 3,
             price: 30,
-            description: t('firstFloorDesc')
+            description: t('firstFloorDesc') || 'Spacious and bright apartment on the first floor featuring a comfortable living area with sofa bed, perfect for families or groups seeking extra space and privacy.'
         },
         {
             id: 'room-102',
-            name: t('masterBedroomTitle') || 'Master Bedroom',
+            name: t('masterBedroomTitle') || 'Master Bedroom Suite',
             image: room102Image,
             capacity: 2,
             price: 30,
-            description: t('masterBedroomDescription')
+            description: t('masterBedroomDescription') || 'Luxurious master suite featuring a king-size bed with premium linens, en-suite bathroom with rain shower, private balcony overlooking the garden, and stunning mountain views. Perfect for couples seeking comfort and romance.'
         },
         {
             id: 'room-103',
-            name: t('guestBedroomTitle') || 'Guest Bedroom',
+            name: t('guestBedroomTitle') || 'Deluxe Guest Room',
             image: room103Image,
             capacity: 2,
             price: 30,
-            description: t('guestBedroomDescription')
+            description: t('guestBedroomDescription') || 'Elegantly furnished guest room with queen bed, modern amenities, and garden views. Features comfortable seating area, ample storage, and access to shared facilities. Ideal for solo travelers or couples.'
         },
         {
             id: 'room-104',
-            name: t('guestRoom3Title') || 'Guest Room 3',
+            name: t('guestRoom3Title') || 'Cozy Mountain Retreat',
             image: room104Image,
             capacity: 2,
             price: 30,
-            description: t('guestRoom3Description') || 'Cozy third guest room with modern amenities'
+            description: t('guestRoom3Description') || 'Intimate and charming room designed for ultimate relaxation. Features comfortable bedding, mountain views, modern amenities, and peaceful atmosphere. Perfect for those seeking a quiet, restorative stay.'
         }
     ];
 

@@ -121,7 +121,7 @@ export const sr = {
     reservationErrorText: 'Molimo pokušajte ponovo ili nas kontaktirajte direktno.',
 
     // Footer
-    footerDescription: 'Idealno mjesto za kratak ili duži boravak, bilo da putujete poslovno ili želite miran predah od svakodnevice. Naši smještaji nude savrijemeno opremljen prostor, privatnost i potpunu fleksibilnost tokom vašeg boravka.',
+    footerDescription: 'Idealno mjesto za kratak ili duži boravak, bilo da putujete poslovno ili želite miran predah od svakodnevice. Naši smještaji nude savremeno opremljen prostor, privatnost i potpunu fleksibilnost tokom vašeg boravka.',
     footerQuickLinks: 'Brzi linkovi',
     footerContact: 'Kontakt informacije',
     footerAddress: 'Čajniče, Bosna i Hercegovina',
@@ -166,7 +166,7 @@ export const sr = {
     faqWifiQuestion: 'Da li je WiFi uključen?',
     faqWifiAnswer: 'Da, brzi WiFi je besplatan za sve goste. Konekcija je pouzdana i pogodna za rad, streaming i ostajanje u kontaktu sa porodicom i prijateljima.',
     faqCancellationQuestion: 'Kakva je vaša politika otkazivanja?',
-    faqCancellationAnswer: 'Besplatno otkazivanje do 7 dana pre dolaska. Otkazivanja u roku od 7 dana podležu naplati od 50%. Nedolasci će biti naplaćeni u punom iznosu.',
+    faqCancellationAnswer: 'Besplatno otkazivanje do 7 dana prije dolaska. Otkazivanja u roku od 7 dana podležu naplati od 50%. Nedolasci će biti naplaćeni u punom iznosu.',
     faqContactTitle: 'Još uvek imate pitanja?',
     faqContactText: 'Slobodno nas kontaktirajte direktno. Tu smo da pomognemo da vaš boravak bude savršen!',
 
@@ -176,35 +176,33 @@ export const sr = {
     firstFloorHouse: 'Apartman Prvi Sprat',
     firstFloorDesc: 'Udoban i svjetao stan smješten na prvom spratu kuće, idealan za miran i opuštajući boravak.',
 
-    // Room Amenities
+    // Enhanced Room Amenities
     kingBed: 'Bračni krevet',
     privateBathroom: 'Privatno kupatilo',
     balcony: 'Balkon',
     airConditioning: 'Klima uređaj',
     wifi: 'WiFi',
-    tv: 'TV',
+    tv: 'Smart TV',
     queenBed: 'Veliki krevet',
     sharedBathroom: 'Zajedničko kupatilo',
-    closet: 'Orman',
+    closet: 'Garderober',
     sofaBed: 'Kauč na razvlačenje',
     kitchenAccess: 'Pristup kuhinji',
     modernBathroom: 'Moderno kupatilo',
-    shower: 'Tuš',
-    towels: 'Peškiri',
-    toiletries: 'Toaletni pribor',
-    sofaSet: 'Sofa set',
+    shower: 'Kiša tuš',
+    towels: 'Premium peškiri',
+    toiletries: 'Luksuzni toaletni pribor',
+    sofaSet: 'Udoban sofa set',
 
-    // Room Types
-    masterBedroomTitle: 'Spavaća soba 1',
-    masterBedroomDescription: 'Prostrana glavna spavaća soba sa vlastitim kupatiom i privatnim balkonom sa pogledom na baštu.',
-    guestBedroomTitle: 'Spavaća soba 2',
-    guestBedroomDescription: 'Udobna gostinjska soba sa velikim krevetom i pristupom zajedničkom kupatilu.',
-    livingRoomTitle: 'Dnevna soba sa kaučem',
-    livingRoomDescription: 'Kauč na razvlačenje u glavnoj dnevnoj sobi sa pristupom svim zajedničkim prostorima.',
-    bathroomTitle: 'Spavaca soba 3',
-    bathroomDescription: 'Moderno kupatilo sa tušem i svim potrebnim sadržajima.',
-    guestRoom3Title: 'Spavaća soba 3',
-    guestRoom3Description: 'Udobna treća gostinjska soba sa modernim sadržajima',
+    // Room Types with Enhanced Descriptions
+    masterBedroomTitle: 'Glavna spavaća soba',
+    masterBedroomDescription: 'Luksuzna glavna spavaća soba sa bračnim krevetom i premium posteljinom, vlastitim kupatiom sa kiša tušem, privatnim balkonom sa pogledom na baštu i prekrasnim pogledom na planine. Savršena za parove koji traže udobnost i romantiku.',
+    guestBedroomTitle: 'Deluxe gostinjska soba',
+    guestBedroomDescription: 'Elegantno opremljena gostinjska soba sa velikim krevetom, modernim sadržajima i pogledom na baštu. Sadrži udoban dio za sjedenje, dovoljno prostora za odlaganje i pristup zajedničkim sadržajima. Idealna za solo putnike ili parove.',
+    livingRoomTitle: 'Dnevna soba apartman',
+    livingRoomDescription: 'Svestran dnevni prostor sa premium kaučem na razvlačenje, zabavnim centrom i punim pristupom zajedničkim prostorima. Savršen za porodice sa djecom ili grupe koje preferiraju otvoren, društven ambijent.',
+    guestRoom3Title: 'Udobno planinsko utočište',
+    guestRoom3Description: 'Intimna i šarmantna soba dizajnirana za potpunu relaksaciju. Sadrži udobnu postelju, pogled na planine, moderne sadržaje i mirnu atmosferu. Savršena za one koji traže miran, obnavljajući boravak.',
     perPerson: 'po osobi',
     guest: 'gost',
     guests: 'gosta',
@@ -349,5 +347,44 @@ export const sr = {
     localCulturalSites: 'Lokalna kulturna mjesta',
     traditionalCuisine: 'Tradicionalna kuhinja',
     idealConditionsText: 'Idealni uslovi za planinarenje, rafting, razgledanje i istraživanje prelijepe prirode oko Čajniča. Dugi dani i ugodne temperature čine ovo savršenim vremenom za avanture na otvorenom.',
-    peacefulRetreatText: 'Savršeno za one koji traže miran planinski odmor. Uživajte u ugodnim večerima uz kamin, skijanju na obližnjoj Jahorini i autentičnom šarmu zime u bosanskim planinama.'
+    peacefulRetreatText: 'Savršeno za one koji traže miran planinski odmor. Uživajte u ugodnim večerima uz kamin, skijanju na obližnjoj Jahorini i autentičnom šarmu zime u bosanskim planinama.',
+
+    // Enhanced Room Descriptions
+    masterBedroomFeatures: 'Bračni krevet, privatno kupatilo, balkon sa pogledom na planine, garderober, radni sto, kafe stanica, premium sadržaji',
+    guestBedroomFeatures: 'Veliki krevet, pogled na baštu, dio za sjedenje, pristup zajedničkom kupatilu, radni prostor, premium posteljina, moderno uređenje',
+    livingRoomFeatures: 'Kauč na razvlačenje, smart TV, zabavni centar, pristup kuhinji, pristup zajedničkim prostorima, porodično okruženje',
+    guestRoom3Features: 'Udobna postelja, pogled na planine, mirna lokacija, moderni sadržaji, zatamnjujuće zavjese, premium udobnost',
+
+    // Additional Room Amenities
+    mountainView: 'Pogled na planine',
+    gardenView: 'Pogled na baštu',
+    workDesk: 'Radni sto',
+    minibar: 'Mini bar',
+    coffeeStation: 'Kafe stanica',
+    heatedFloors: 'Grijanje poda',
+    blackoutCurtains: 'Zatamnjujuće zavjese',
+    soundproofing: 'Zvučna izolacija',
+    dailyHousekeeping: 'Dnevno čišćenje',
+    roomService: 'Sobna usluga',
+
+    // Room Attributes
+    roomSize: 'Veličina sobe',
+    bedType: 'Tip kreveta',
+    viewType: 'Pogled',
+    bathroomType: 'Kupatilo',
+    specialFeatures: 'Posebne karakteristike',
+    idealFor: 'Idealno za',
+
+    // Room Sizes
+    spacious: 'Prostrano (25-30 m²)',
+    comfortable: 'Udobno (20-25 m²)',
+    cozy: 'Intimno (15-20 m²)',
+
+    // Ideal For
+    couples: 'Parove i romantiku',
+    families: 'Porodice sa djecom',
+    business: 'Poslovne putnike',
+    groups: 'Male grupe',
+    soloTravelers: 'Solo putnike',
+    longStay: 'Duži boravak'
 };
