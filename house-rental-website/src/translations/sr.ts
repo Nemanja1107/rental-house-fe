@@ -78,7 +78,7 @@ export const sr = {
     aboutAmenitiesTitle: 'Sadržaji i karakteristike',
     aboutStats1: 'Zadovoljnih gostiju',
     aboutStats2: 'Godina iskustva',
-    aboutStats3: 'Prosečna ocena',
+    aboutStats3: 'Prosečna ocjena',
     aboutStats4: 'Stopa povratka',
 
     // Amenities
@@ -92,12 +92,12 @@ export const sr = {
     washerDryer: 'Mašina za veš i sušenje',
     freeParking: 'Besplatan parking',
     dedicatedParking: 'Namjenjeno parkiranje',
-    secure: 'Bezbedno',
-    security247: 'Obezbeđenje 24/7',
+    secure: 'Bezbijedno',
+    security247: 'Obezbjeđenje 24/7',
     flexible: 'Fleksibilno',
     shortLongTerm: 'Kratkoročno i dugoročno',
     commonAreas: 'Zajednički prostori',
-    sharedSpaces: 'Deljeni prostori',
+    sharedSpaces: 'Dijeljeni prostori',
 
     // Reservation Section
     reservationTitle: 'Napravite rezervaciju',

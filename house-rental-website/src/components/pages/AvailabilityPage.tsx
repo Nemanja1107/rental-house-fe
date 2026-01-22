@@ -45,7 +45,7 @@ const AvailabilityPage: React.FC<AvailabilityPageProps> = ({ onBack, onBookNow }
             image: room101Image,
             capacity: 3,
             price: 30,
-            description: t('firstFloorDesc') || 'Spacious and bright apartment on the first floor featuring a comfortable living area with sofa bed, perfect for families or groups seeking extra space and privacy.'
+            description: t('firstFloorDesc') || 'Spacious and luxuriously appointed apartment on the first floor with panoramic mountain and garden views. Features a comfortable living room with premium sofa bed, fully equipped kitchen, modern bathroom with rain shower, and private balcony for relaxation. Perfect for families or groups up to 3 people seeking extra space, privacy, and all the comforts of home.'
         },
         {
             id: 'room-102',

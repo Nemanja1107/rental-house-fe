@@ -174,7 +174,7 @@ export const en = {
     availableRoomsTitle: 'Available Rooms',
     availableRoomsDescription: 'Choose from our comfortable and well-appointed rooms, each designed to provide a relaxing stay with modern amenities and thoughtful touches.',
     firstFloorHouse: 'First Floor Apartment',
-    firstFloorDesc: 'Spacious and bright apartment on the first floor featuring a comfortable living area with sofa bed, perfect for families or groups seeking extra space and privacy.',
+    firstFloorDesc: 'Spacious and luxuriously appointed apartment on the first floor with panoramic mountain and garden views. Features a comfortable living room with premium sofa bed, fully equipped kitchen, modern bathroom with rain shower, and private balcony for relaxation. Perfect for families or groups up to 3 people seeking extra space, privacy, and all the comforts of home. An ideal blend of comfort, functionality, and elegance in a peaceful setting.',
 
     // Room Amenities
     kingBed: 'King Bed',
