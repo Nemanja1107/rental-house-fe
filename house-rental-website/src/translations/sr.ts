@@ -78,7 +78,7 @@ export const sr = {
     aboutAmenitiesTitle: 'Sadržaji i karakteristike',
     aboutStats1: 'Zadovoljnih gostiju',
     aboutStats2: 'Godina iskustva',
-    aboutStats3: 'Prosečna ocjena',
+    aboutStats3: 'Prosječna ocjena',
     aboutStats4: 'Stopa povratka',
 
     // Amenities
@@ -173,8 +173,8 @@ export const sr = {
     //Rooms
     availableRoomsTitle: 'Dostupne sobe',
     availableRoomsDescription: 'Izaberite jednu od naših udobnih i dobro opremljenih soba, svaka dizajnirana da pruži opuštajući boravak sa modernim sadržajima i pažljivo osmišljenim detaljima.',
-    firstFloorHouse: 'Apartman Prvi Sprat',
-    firstFloorDesc: 'Udoban i svjetao stan smješten na prvom spratu kuće, idealan za miran i opuštajući boravak.',
+    firstFloorHouse: 'Apartman – Prvi sprat',
+    firstFloorDesc: 'Prostran i luksuzno opremljen apartman na prvom spratu sa panoramskim pogledom na planine i baštu. Sadrži udobnu dnevnu sobu sa premium kaučem na razvlačenje, potpuno opremljenu kuhinju, moderno kupatilo sa kiša tušem i privatni balkon za opuštanje. Savršen za porodice ili grupe do 3 osobe koje traže dodatni prostor, privatnost i sve pogodnosti doma. Idealan spoj udobnosti, funkcionalnosti i elegancije u mirnom okruženju.',
 
     // Enhanced Room Amenities
     kingBed: 'Bračni krevet',
@@ -208,6 +208,7 @@ export const sr = {
     guests: 'gosta',
     room: 'Soba',
     keyFeatures: 'Ključne karakteristike',
+    viewLess: 'Pogledaj manje',
     hideDetails: 'Sakrij detalje',
     viewAllDetails: 'Prikaži sve detalje',
     allAmenities: 'Sve Pogodnosti',

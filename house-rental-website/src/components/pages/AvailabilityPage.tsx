@@ -301,7 +301,7 @@ const AvailabilityPage: React.FC<AvailabilityPageProps> = ({ onBack, onBookNow }
 
                 {/* Rooms Grid */}
                 {!loading && (
-                    <div className="grid grid-cols-1 xl:grid-cols-2 gap-8">
+                    <div className="flex flex-wrap gap-8 justify-center xl:justify-start">
                         {rooms.map((room) => {
                             const availability = generateAvailabilityData(
                                 room.id,
@@ -311,135 +311,145 @@ const AvailabilityPage: React.FC<AvailabilityPageProps> = ({ onBack, onBookNow }
                             const days = getDaysInMonth(currentMonth);
 
                             return (
-                                <Card key={room.id} className="overflow-hidden">
-                                    {/* Room Header */}
-                                    <div className="p-6 border-b border-gray-200 bg-gradient-to-r from-blue-50 to-indigo-50">
-                                        <div className="flex items-center space-x-4">
-                                            <div className="w-20 h-20 bg-gray-200 rounded-xl overflow-hidden flex-shrink-0">
-                                                <img
-                                                    src={room.image}
-                                                    alt={room.name}
-                                                    className="w-full h-full object-cover"
-                                                    onError={(e) => {
-                                                        const target = e.target as HTMLImageElement;
-                                                        target.style.display = 'none';
-                                                        target.parentElement!.innerHTML = `
+                                <div key={room.id} className="w-full xl:w-[calc(50%-1rem)] flex">
+                                    <Card className="overflow-hidden flex flex-col h-full w-full">
+                                        {/* Room Header - Fixed Height */}
+                                        <div className="p-6 border-b border-gray-200 bg-gradient-to-r from-blue-50 to-indigo-50 flex-shrink-0">
+                                            <div className="flex items-start space-x-4">
+                                                <div className="w-20 h-20 bg-gray-200 rounded-xl overflow-hidden flex-shrink-0">
+                                                    <img
+                                                        src={room.image}
+                                                        alt={room.name}
+                                                        className="w-full h-full object-cover"
+                                                        onError={(e) => {
+                                                            const target = e.target as HTMLImageElement;
+                                                            target.style.display = 'none';
+                                                            target.parentElement!.innerHTML = `
                                                             <div class="w-full h-full flex items-center justify-center bg-gray-300 text-gray-500 text-xs">
                                                                 No Image
                                                             </div>
                                                         `;
-                                                    }}
-                                                />
-                                            </div>
-                                            <div className="flex-grow">
-                                                <h3 className="text-lg font-semibold text-gray-900 mb-1">
-                                                    {room.name}
-                                                </h3>
-                                                <p className="text-sm text-gray-600 mb-2">
-                                                    {room.description}
-                                                </p>
-                                                <div className="flex items-center space-x-4 text-sm">
-                                                    <div className="flex items-center space-x-1 text-gray-600">
-                                                        <Users className="w-4 h-4" />
-                                                        <span>{room.capacity} {t('guests') || 'guests'}</span>
+                                                        }}
+                                                    />
+                                                </div>
+                                                <div className="flex-grow min-h-[80px] flex flex-col justify-between">
+                                                    <div>
+                                                        <h3 className="text-lg font-semibold text-gray-900 mb-1">
+                                                            {room.name}
+                                                        </h3>
+                                                        <p className="text-sm text-gray-600 mb-2 leading-relaxed overflow-hidden"
+                                                            style={{
+                                                                display: '-webkit-box',
+                                                                WebkitLineClamp: 3,
+                                                                WebkitBoxOrient: 'vertical',
+                                                                maxHeight: '4.5rem'
+                                                            }}>
+                                                            {room.description}
+                                                        </p>
                                                     </div>
-                                                    <div className="font-semibold text-blue-600">
-                                                        {room.price} BAM/{t('perPerson') || 'person'}
+                                                    <div className="flex items-center space-x-4 text-sm mt-auto">
+                                                        <div className="flex items-center space-x-1 text-gray-600">
+                                                            <Users className="w-4 h-4" />
+                                                            <span>{room.capacity} {t('guests') || 'guests'}</span>
+                                                        </div>
+                                                        <div className="font-semibold text-blue-600">
+                                                            {room.price} BAM/{t('perPerson') || 'person'}
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
 
-                                    {/* Calendar */}
-                                    <div className="p-6">
-                                        {/* Calendar Header */}
-                                        <div className="grid grid-cols-7 gap-1 mb-3">
-                                            {dayNames.map((day) => (
-                                                <div key={day} className="text-center text-xs font-semibold text-gray-500 py-2">
-                                                    {day}
-                                                </div>
-                                            ))}
-                                        </div>
+                                        {/* Calendar - Flexible Height */}
+                                        <div className="p-6 flex-grow flex flex-col">
+                                            {/* Calendar Header */}
+                                            <div className="grid grid-cols-7 gap-1 mb-3">
+                                                {dayNames.map((day) => (
+                                                    <div key={day} className="text-center text-xs font-semibold text-gray-500 py-2">
+                                                        {day}
+                                                    </div>
+                                                ))}
+                                            </div>
 
-                                        {/* Calendar Grid */}
-                                        <div className="grid grid-cols-7 gap-1">
-                                            {days.map((day, index) => {
-                                                if (day === null) {
-                                                    return <div key={index} className="h-10"></div>;
-                                                }
+                                            {/* Calendar Grid */}
+                                            <div className="grid grid-cols-7 gap-1 flex-grow">
+                                                {days.map((day, index) => {
+                                                    if (day === null) {
+                                                        return <div key={index} className="h-10"></div>;
+                                                    }
 
-                                                const dayData = availability.find(d =>
-                                                    parseInt(d.date.split('-')[2]) === day
-                                                );
-                                                const status = dayData?.status || 'available';
-                                                const reservation = dayData?.reservation;
+                                                    const dayData = availability.find(d =>
+                                                        parseInt(d.date.split('-')[2]) === day
+                                                    );
+                                                    const status = dayData?.status || 'available';
+                                                    const reservation = dayData?.reservation;
 
-                                                const today = new Date();
-                                                const isToday =
-                                                    today.getDate() === day &&
-                                                    today.getMonth() === currentMonth.getMonth() &&
-                                                    today.getFullYear() === currentMonth.getFullYear();
+                                                    const today = new Date();
+                                                    const isToday =
+                                                        today.getDate() === day &&
+                                                        today.getMonth() === currentMonth.getMonth() &&
+                                                        today.getFullYear() === currentMonth.getFullYear();
 
-                                                // Create tooltip text
-                                                let tooltipText = `${day} - ${status.charAt(0).toUpperCase() + status.slice(1)}`;
-                                                if (reservation) {
-                                                    tooltipText += `\nGuest: ${reservation.fullName}\nCheck-in: ${new Date(reservation.checkIn).toLocaleDateString()}\nCheck-out: ${new Date(reservation.checkOut).toLocaleDateString()}`;
-                                                }
+                                                    // Create tooltip text
+                                                    let tooltipText = `${day} - ${status.charAt(0).toUpperCase() + status.slice(1)}`;
+                                                    if (reservation) {
+                                                        tooltipText += `\nGuest: ${reservation.fullName}\nCheck-in: ${new Date(reservation.checkIn).toLocaleDateString()}\nCheck-out: ${new Date(reservation.checkOut).toLocaleDateString()}`;
+                                                    }
 
-                                                return (
-                                                    <div
-                                                        key={day}
-                                                        className={`
+                                                    return (
+                                                        <div
+                                                            key={day}
+                                                            className={`
                                                             h-10 flex items-center justify-center text-sm rounded-lg border transition-all cursor-pointer
                                                             ${getStatusStyle(status)}
                                                             ${isToday ? 'ring-2 ring-blue-400 ring-offset-1' : ''}
                                                             ${status === 'available' ? 'hover:scale-105' : 'cursor-not-allowed'}
                                                         `}
-                                                        title={tooltipText}
-                                                    >
+                                                            title={tooltipText}
+                                                        >
+                                                            <div className="flex items-center space-x-1">
+                                                                <span className="font-medium">{day}</span>
+                                                                {status !== 'available' && getStatusIcon(status)}
+                                                            </div>
+                                                        </div>
+                                                    );
+                                                })}
+                                            </div>
+
+                                            {/* Room Statistics - Fixed at Bottom */}
+                                            <div className="mt-6 pt-4 border-t border-gray-200 flex-shrink-0">
+                                                <div className="flex items-center justify-between">
+                                                    <div className="flex items-center space-x-6 text-sm">
                                                         <div className="flex items-center space-x-1">
-                                                            <span className="font-medium">{day}</span>
-                                                            {status !== 'available' && getStatusIcon(status)}
+                                                            <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                                                            <span className="text-gray-600">
+                                                                {availability.filter(d => d.status === 'available').length} {t('available') || 'available'}
+                                                            </span>
+                                                        </div>
+                                                        <div className="flex items-center space-x-1">
+                                                            <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+                                                            <span className="text-gray-600">
+                                                                {availability.filter(d => d.status === 'booked').length} {t('booked') || 'booked'}
+                                                            </span>
+                                                        </div>
+                                                        <div className="flex items-center space-x-1">
+                                                            <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                                                            <span className="text-gray-600">
+                                                                {availability.filter(d => d.status === 'pending').length} {t('pending') || 'pending'}
+                                                            </span>
                                                         </div>
                                                     </div>
-                                                );
-                                            })}
-                                        </div>
-
-                                        {/* Room Statistics */}
-                                        <div className="mt-6 pt-4 border-t border-gray-200">
-                                            <div className="flex items-center justify-between">
-                                                <div className="flex items-center space-x-6 text-sm">
-                                                    <div className="flex items-center space-x-1">
-                                                        <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                                                        <span className="text-gray-600">
-                                                            {availability.filter(d => d.status === 'available').length} {t('available') || 'available'}
-                                                        </span>
-                                                    </div>
-                                                    <div className="flex items-center space-x-1">
-                                                        <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-                                                        <span className="text-gray-600">
-                                                            {availability.filter(d => d.status === 'booked').length} {t('booked') || 'booked'}
-                                                        </span>
-                                                    </div>
-                                                    <div className="flex items-center space-x-1">
-                                                        <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-                                                        <span className="text-gray-600">
-                                                            {availability.filter(d => d.status === 'pending').length} {t('pending') || 'pending'}
-                                                        </span>
-                                                    </div>
+                                                    <button
+                                                        onClick={() => onBookNow?.(room.id)}
+                                                        className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg transition-colors"
+                                                    >
+                                                        {t('bookNow') || 'Book Now'}
+                                                    </button>
                                                 </div>
-                                                <button
-                                                    onClick={() => onBookNow?.(room.id)}
-                                                    className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg transition-colors"
-                                                >
-                                                    {t('bookNow') || 'Book Now'}
-                                                </button>
                                             </div>
                                         </div>
-                                    </div>
-                                </Card>
+                                    </Card>
+                                </div>
                             );
                         })}
                     </div>

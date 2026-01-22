@@ -247,6 +247,7 @@ export const en = {
     guests: 'guests',
     room: 'Room',
     keyFeatures: 'Key Features',
+    viewLess: 'View Less',
     hideDetails: 'Hide Details',
     viewAllDetails: 'View All Details',
     allAmenities: 'All Amenities',

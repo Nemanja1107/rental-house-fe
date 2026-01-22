@@ -35,12 +35,13 @@ interface RoomsProps {
 
 const Rooms: React.FC<RoomsProps> = ({ rooms = [], onCheckAvailability }) => {
     const [expandedRoomId, setExpandedRoomId] = useState<string>('');
+    const [expandedDescriptions, setExpandedDescriptions] = useState<Set<string>>(new Set());
     const { t } = useTranslation();
 
     // Sample rooms data if none provided
     const defaultRooms: Room[] = [
         {
-            id: '1',
+            id: 'first-floor-apartment',
             name: t('firstFloorHouse'),
             description: t('firstFloorDesc'),
             capacity: 3,
@@ -49,7 +50,7 @@ const Rooms: React.FC<RoomsProps> = ({ rooms = [], onCheckAvailability }) => {
             price: 30
         },
         {
-            id: '2',
+            id: 'master-bedroom-suite',
             name: t('masterBedroomTitle'),
             description: t('masterBedroomDescription'),
             capacity: 2,
@@ -58,7 +59,7 @@ const Rooms: React.FC<RoomsProps> = ({ rooms = [], onCheckAvailability }) => {
             price: 30
         },
         {
-            id: '3',
+            id: 'deluxe-guest-room',
             name: t('guestBedroomTitle'),
             description: t('guestBedroomDescription'),
             capacity: 2,
@@ -67,7 +68,7 @@ const Rooms: React.FC<RoomsProps> = ({ rooms = [], onCheckAvailability }) => {
             price: 30
         },
         {
-            id: '4',
+            id: 'cozy-mountain-retreat',
             name: t('guestRoom3Title'),
             description: t('guestRoom3Description'),
             capacity: 2,
@@ -86,6 +87,18 @@ const Rooms: React.FC<RoomsProps> = ({ rooms = [], onCheckAvailability }) => {
             setExpandedRoomId(roomId);
         }
     };
+
+    const toggleDescription = (roomId: string) => {
+        const newExpandedDescriptions = new Set(expandedDescriptions);
+        if (newExpandedDescriptions.has(roomId)) {
+            newExpandedDescriptions.delete(roomId);
+        } else {
+            newExpandedDescriptions.add(roomId);
+        }
+        setExpandedDescriptions(newExpandedDescriptions);
+    };
+
+    const isDescriptionExpanded = (roomId: string) => expandedDescriptions.has(roomId);
 
     // Icon mapping for amenities
     const getAmenityIcon = (amenity: string) => {
@@ -145,184 +158,222 @@ const Rooms: React.FC<RoomsProps> = ({ rooms = [], onCheckAvailability }) => {
                 </div>
 
                 {/* Rooms Grid */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
                     {roomsToShow.map((room) => {
                         const isExpanded = expandedRoomId === room.id;
 
                         return (
-                            <Card key={room.id} hover className="overflow-hidden">
-                                {/* Room Image */}
-                                <div className="relative h-64 bg-gray-200">
-                                    {room.images.length > 0 ? (
-                                        <img
-                                            src={room.images[0]}
-                                            alt={room.name}
-                                            className="w-full h-full object-cover"
-                                            onError={(e) => {
-                                                const target = e.target as HTMLImageElement;
-                                                target.style.display = 'none';
-                                                target.parentElement!.innerHTML = `
+                            <div key={room.id} className="w-full">
+                                <Card hover className="overflow-hidden flex flex-col w-full min-h-[650px]">
+                                    {/* Room Image - Fixed Height */}
+                                    <div className="relative h-64 bg-gray-200 flex-shrink-0">
+                                        {room.images.length > 0 ? (
+                                            <img
+                                                src={room.images[0]}
+                                                alt={room.name}
+                                                className="w-full h-full object-cover"
+                                                onError={(e) => {
+                                                    const target = e.target as HTMLImageElement;
+                                                    target.style.display = 'none';
+                                                    target.parentElement!.innerHTML = `
                                                     <div class="w-full h-full flex items-center justify-center bg-gray-200">
                                                         <span class="text-gray-500">Image not available</span>
                                                     </div>
                                                 `;
-                                            }}
-                                        />
-                                    ) : (
-                                        <div className="w-full h-full flex items-center justify-center">
-                                            <span className="text-gray-500">No image available</span>
-                                        </div>
-                                    )}
+                                                }}
+                                            />
+                                        ) : (
+                                            <div className="w-full h-full flex items-center justify-center">
+                                                <span className="text-gray-500">No image available</span>
+                                            </div>
+                                        )}
 
-                                    {/* Capacity Badge */}
-                                    <div className="absolute top-4 right-4 bg-white bg-opacity-90 rounded-full px-3 py-1 flex items-center space-x-1">
-                                        <Users size={16} className="text-gray-600" />
-                                        <span className="text-sm font-medium text-gray-700">
-                                            {room.capacity} {room.capacity === 1 ? t('guest') : t('guests')}
-                                        </span>
-                                    </div>
-                                </div>
-
-                                {/* Room Content */}
-                                <div className="p-6">
-                                    {/* Room Header */}
-                                    <div className="flex items-start justify-between mb-4">
-                                        <div>
-                                            <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                                                {room.name}
-                                            </h3>
-                                            {room.price && (
-                                                <div className="text-lg font-bold text-blue-600">
-                                                    {room.price} BAM {t('perPerson')}
-                                                </div>
-                                            )}
-                                        </div>
-                                    </div>
-
-                                    {/* Room Description */}
-                                    <p className="text-gray-600 mb-4 leading-relaxed">
-                                        {room.description}
-                                    </p>
-
-                                    {/* Key Amenities Preview */}
-                                    <div className="mb-4">
-                                        <h4 className="text-sm font-semibold text-gray-900 mb-2">
-                                            {t('keyFeatures')}
-                                        </h4>
-                                        <div className="flex flex-wrap gap-2">
-                                            {room.amenities.slice(0, 3).map((amenity, index) => (
-                                                <div
-                                                    key={index}
-                                                    className="flex items-center space-x-1 bg-gray-100 rounded-full px-3 py-1"
-                                                >
-                                                    {getAmenityIcon(amenity)}
-                                                    <span className="text-sm text-gray-700">{amenity}</span>
-                                                </div>
-                                            ))}
-                                            {room.amenities.length > 3 && (
-                                                <div className="flex items-center space-x-1 bg-gray-100 rounded-full px-3 py-1">
-                                                    <span className="text-sm text-gray-700">
-                                                        +{room.amenities.length - 3} more
-                                                    </span>
-                                                </div>
-                                            )}
-                                        </div>
-                                    </div>
-
-                                    {/* Expandable Details */}
-                                    <div className="border-t pt-4">
-                                        <button
-                                            onClick={() => toggleExpanded(room.id)}
-                                            className="flex items-center justify-between w-full text-left text-blue-600 hover:text-blue-700 transition-colors"
-                                        >
-                                            <span className="font-medium">
-                                                {isExpanded ? t('hideDetails') : t('viewAllDetails')}
+                                        {/* Capacity Badge */}
+                                        <div className="absolute top-4 right-4 bg-white bg-opacity-90 rounded-full px-3 py-1 flex items-center space-x-1">
+                                            <Users size={16} className="text-gray-600" />
+                                            <span className="text-sm font-medium text-gray-700">
+                                                {room.capacity} {room.capacity === 1 ? t('guest') : t('guests')}
                                             </span>
-                                            {isExpanded ? (
-                                                <ChevronUp size={20} />
-                                            ) : (
-                                                <ChevronDown size={20} />
-                                            )}
-                                        </button>
+                                        </div>
+                                    </div>
 
-                                        {/* Expanded Content */}
-                                        {isExpanded && (
-                                            <div className="mt-4 space-y-4 animate-in slide-in-from-top duration-200">
-                                                {/* All Amenities */}
-                                                <div>
-                                                    <h5 className="text-sm font-semibold text-gray-900 mb-2">
-                                                        {t('allAmenities')}
-                                                    </h5>
-                                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                                                        {room.amenities.map((amenity, index) => (
-                                                            <div
-                                                                key={index}
-                                                                className="flex items-center space-x-2"
-                                                            >
-                                                                {getAmenityIcon(amenity)}
-                                                                <span className="text-sm text-gray-700">
-                                                                    {amenity}
-                                                                </span>
-                                                            </div>
-                                                        ))}
+                                    {/* Room Content - Flexible Height */}
+                                    <div className="p-6 flex-grow flex flex-col">
+                                        {/* Room Header - Fixed Height */}
+                                        <div className="flex items-start justify-between mb-4 flex-shrink-0">
+                                            <div className="flex-grow">
+                                                <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                                                    {room.name}
+                                                </h3>
+                                                {room.price && (
+                                                    <div className="text-lg font-bold text-blue-600">
+                                                        {room.price} BAM {t('perPerson')}
                                                     </div>
-                                                </div>
+                                                )}
+                                            </div>
+                                        </div>
 
-                                                {/* Additional Images */}
-                                                {room.images.length > 1 && (
+                                        {/* Room Description - Expandable */}
+                                        <div className="mb-4 flex-shrink-0">
+                                            <div className="relative">
+                                                <p className={`text-gray-600 leading-relaxed transition-all duration-300 ${isDescriptionExpanded(room.id)
+                                                    ? 'overflow-visible'
+                                                    : 'overflow-hidden'
+                                                    }`}
+                                                    style={!isDescriptionExpanded(room.id) ? {
+                                                        display: '-webkit-box',
+                                                        WebkitLineClamp: 3,
+                                                        WebkitBoxOrient: 'vertical',
+                                                        maxHeight: '4.5rem'
+                                                    } : {}}>
+                                                    {room.description}
+                                                </p>
+
+                                                {/* Check if description is long enough to need truncation */}
+                                                {room.description && room.description.length > 120 && (
+                                                    <button
+                                                        onClick={() => toggleDescription(room.id)}
+                                                        className="mt-2 text-blue-600 hover:text-blue-700 text-sm font-medium transition-colors inline-flex items-center"
+                                                    >
+                                                        {isDescriptionExpanded(room.id)
+                                                            ? (
+                                                                <>
+                                                                    <ChevronUp size={16} className="mr-1" />
+                                                                    {t('viewLess') || 'View Less'}
+                                                                </>
+                                                            )
+                                                            : (
+                                                                <>
+                                                                    <ChevronDown size={16} className="mr-1" />
+                                                                    {t('viewMore') || 'View More'}
+                                                                </>
+                                                            )
+                                                        }
+                                                    </button>
+                                                )}
+                                            </div>
+                                        </div>
+
+                                        {/* Key Amenities Preview - Fixed Height */}
+                                        <div className="mb-4 flex-shrink-0">
+                                            <h4 className="text-sm font-semibold text-gray-900 mb-2">
+                                                {t('keyFeatures')}
+                                            </h4>
+                                            <div className="flex flex-wrap gap-2">
+                                                {room.amenities.slice(0, 3).map((amenity, index) => (
+                                                    <div
+                                                        key={index}
+                                                        className="flex items-center space-x-1 bg-gray-100 rounded-full px-3 py-1"
+                                                    >
+                                                        {getAmenityIcon(amenity)}
+                                                        <span className="text-sm text-gray-700">{amenity}</span>
+                                                    </div>
+                                                ))}
+                                                {room.amenities.length > 3 && (
+                                                    <div className="flex items-center space-x-1 bg-gray-100 rounded-full px-3 py-1">
+                                                        <span className="text-sm text-gray-700">
+                                                            +{room.amenities.length - 3} more
+                                                        </span>
+                                                    </div>
+                                                )}
+                                            </div>
+                                        </div>
+
+                                        {/* Expandable Details - Always at bottom */}
+                                        <div className="border-t pt-4 mt-auto">
+                                            <button
+                                                onClick={() => toggleExpanded(room.id)}
+                                                className="flex items-center justify-between w-full text-left text-blue-600 hover:text-blue-700 transition-colors"
+                                            >
+                                                <span className="font-medium">
+                                                    {isExpanded ? t('hideDetails') : t('viewAllDetails')}
+                                                </span>
+                                                {isExpanded ? (
+                                                    <ChevronUp size={20} />
+                                                ) : (
+                                                    <ChevronDown size={20} />
+                                                )}
+                                            </button>
+
+                                            {/* Expanded Content */}
+                                            {isExpanded && (
+                                                <div className="mt-4 space-y-4 animate-in slide-in-from-top duration-200">
+                                                    {/* All Amenities */}
                                                     <div>
                                                         <h5 className="text-sm font-semibold text-gray-900 mb-2">
-                                                            {t('additionalPhotos')}
+                                                            {t('allAmenities')}
                                                         </h5>
-                                                        <div className="grid grid-cols-2 gap-2">
-                                                            {room.images.slice(1).map((image, index) => (
+                                                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                                                            {room.amenities.map((amenity, index) => (
                                                                 <div
                                                                     key={index}
-                                                                    className="relative h-24 bg-gray-200 rounded overflow-hidden"
+                                                                    className="flex items-center space-x-2"
                                                                 >
-                                                                    <img
-                                                                        src={image}
-                                                                        alt={`${room.name} - Image ${index + 2}`}
-                                                                        className="w-full h-full object-cover"
-                                                                        onError={(e) => {
-                                                                            const target = e.target as HTMLImageElement;
-                                                                            target.style.display = 'none';
-                                                                            target.parentElement!.innerHTML = `
-                                                                                <div class="w-full h-full flex items-center justify-center bg-gray-200">
-                                                                                    <span class="text-xs text-gray-500">Image not available</span>
-                                                                                </div>
-                                                                            `;
-                                                                        }}
-                                                                    />
+                                                                    {getAmenityIcon(amenity)}
+                                                                    <span className="text-sm text-gray-700">
+                                                                        {amenity}
+                                                                    </span>
                                                                 </div>
                                                             ))}
                                                         </div>
                                                     </div>
-                                                )}
 
-                                                {/* Room Specifications */}
-                                                <div>
-                                                    <h5 className="text-sm font-semibold text-gray-900 mb-2">
-                                                        {t('roomSpecification')}
-                                                    </h5>
-                                                    <div className="text-sm text-gray-600 space-y-1">
-                                                        <div className="flex items-center space-x-2">
-                                                            <Users size={16} />
-                                                            <span>{t('maxCapacity')}: {room.capacity} {room.capacity === 1 ? t('guest') : t('guests')}</span>
-                                                        </div>
-                                                        {room.price && (
-                                                            <div className="flex items-center space-x-2">
-                                                                <span className="w-4 h-4 text-center">$</span>
-                                                                <span>{t('price')}: {room.price} BAM {t('perPerson')}</span>
+                                                    {/* Additional Images */}
+                                                    {room.images.length > 1 && (
+                                                        <div>
+                                                            <h5 className="text-sm font-semibold text-gray-900 mb-2">
+                                                                {t('additionalPhotos')}
+                                                            </h5>
+                                                            <div className="grid grid-cols-2 gap-2">
+                                                                {room.images.slice(1).map((image, index) => (
+                                                                    <div
+                                                                        key={index}
+                                                                        className="relative h-24 bg-gray-200 rounded overflow-hidden"
+                                                                    >
+                                                                        <img
+                                                                            src={image}
+                                                                            alt={`${room.name} - Image ${index + 2}`}
+                                                                            className="w-full h-full object-cover"
+                                                                            onError={(e) => {
+                                                                                const target = e.target as HTMLImageElement;
+                                                                                target.style.display = 'none';
+                                                                                target.parentElement!.innerHTML = `
+                                                                                <div class="w-full h-full flex items-center justify-center bg-gray-200">
+                                                                                    <span class="text-xs text-gray-500">Image not available</span>
+                                                                                </div>
+                                                                            `;
+                                                                            }}
+                                                                        />
+                                                                    </div>
+                                                                ))}
                                                             </div>
-                                                        )}
+                                                        </div>
+                                                    )}
+
+                                                    {/* Room Specifications */}
+                                                    <div>
+                                                        <h5 className="text-sm font-semibold text-gray-900 mb-2">
+                                                            {t('roomSpecification')}
+                                                        </h5>
+                                                        <div className="text-sm text-gray-600 space-y-1">
+                                                            <div className="flex items-center space-x-2">
+                                                                <Users size={16} />
+                                                                <span>{t('maxCapacity')}: {room.capacity} {room.capacity === 1 ? t('guest') : t('guests')}</span>
+                                                            </div>
+                                                            {room.price && (
+                                                                <div className="flex items-center space-x-2">
+                                                                    <span className="w-4 h-4 text-center">$</span>
+                                                                    <span>{t('price')}: {room.price} BAM {t('perPerson')}</span>
+                                                                </div>
+                                                            )}
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        )}
+                                            )}
+                                        </div>
                                     </div>
-                                </div>
-                            </Card>
+                                </Card>
+                            </div>
                         );
                     })}
                 </div>
