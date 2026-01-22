@@ -4,6 +4,12 @@ import { useTranslation } from '../../contexts/TranslationContext';
 import Card from '../ui/Card';
 import { apiService, type Reservation } from '../../services/api';
 
+// Import room images
+import room101Image from '../../assets/images/CB0A4806.jpg';
+import room102Image from '../../assets/images/CB0A4838.jpg';
+import room103Image from '../../assets/images/CB0A4835.jpg';
+import room104Image from '../../assets/images/CB0A4831.jpg';
+
 interface AvailabilityPageProps {
     onBack: () => void;
     onBookNow?: (roomId: string) => void;
@@ -36,7 +42,7 @@ const AvailabilityPage: React.FC<AvailabilityPageProps> = ({ onBack, onBookNow }
         {
             id: 'room-101',
             name: t('firstFloorHouse') || 'First Floor Apartment',
-            image: '/src/assets/images/CB0A4806.jpg',
+            image: room101Image,
             capacity: 3,
             price: 30,
             description: t('firstFloorDesc')
@@ -44,7 +50,7 @@ const AvailabilityPage: React.FC<AvailabilityPageProps> = ({ onBack, onBookNow }
         {
             id: 'room-102',
             name: t('masterBedroomTitle') || 'Master Bedroom',
-            image: '/src/assets/images/CB0A4838.jpg',
+            image: room102Image,
             capacity: 2,
             price: 30,
             description: t('masterBedroomDescription')
@@ -52,7 +58,7 @@ const AvailabilityPage: React.FC<AvailabilityPageProps> = ({ onBack, onBookNow }
         {
             id: 'room-103',
             name: t('guestBedroomTitle') || 'Guest Bedroom',
-            image: '/src/assets/images/CB0A4835.jpg',
+            image: room103Image,
             capacity: 2,
             price: 30,
             description: t('guestBedroomDescription')
@@ -60,7 +66,7 @@ const AvailabilityPage: React.FC<AvailabilityPageProps> = ({ onBack, onBookNow }
         {
             id: 'room-104',
             name: t('guestRoom3Title') || 'Guest Room 3',
-            image: '/src/assets/images/CB0A4831.jpg',
+            image: room104Image,
             capacity: 2,
             price: 30,
             description: t('guestRoom3Description') || 'Cozy third guest room with modern amenities'
