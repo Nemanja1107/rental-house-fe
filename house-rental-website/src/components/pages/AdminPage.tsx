@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowLeft, Users, Calendar, CheckCircle, XCircle, Clock, AlertCircle, Trash2 } from 'lucide-react';
+import { ArrowLeft, Users, Calendar, CheckCircle, XCircle, Clock, AlertCircle, Trash2, ChevronLeft, ChevronRight } from 'lucide-react';
 import { apiService, type Reservation } from '../../services/api';
 import DisapprovalModal from '../ui/DisapprovalModal';
 import DeleteModal from '../ui/DeleteModal';
@@ -13,10 +13,18 @@ const AdminPage: React.FC<AdminPageProps> = ({ onBack }) => {
     const { t } = useTranslation();
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
     const [reservations, setReservations] = useState<Reservation[]>([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string>('');
     const [selectedStatus, setSelectedStatus] = useState<'all' | 'pending' | 'approved' | 'disapproved'>('all');
+
+    // Pagination state
+    const [currentPage, setCurrentPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(1);
+    const [totalReservations, setTotalReservations] = useState(0);
+    const [itemsPerPage] = useState(10); // Fixed items per page
+
     const [disapprovalModal, setDisapprovalModal] = useState<{
         isOpen: boolean;
         reservation: Reservation | null;
@@ -31,17 +39,29 @@ const AdminPage: React.FC<AdminPageProps> = ({ onBack }) => {
     // TO ADD NEW ADMIN: Simply add the email address to this array
     const authorizedEmails = [
         'nemanjebjelogrlic@gmail.com',           // Default admin account
+        'skajevic@yahoo.com',
         // Add more authorized emails here as needed
         // Example: 'your-email@domain.com'
     ];
 
-    // Fetch reservations from API
-    const fetchReservations = async () => {
+    // Hardcoded admin password for additional security
+    // TO CHANGE PASSWORD: Update this value
+    const ADMIN_PASSWORD = 'HouseRental2024!'; // Change this to your desired password
+
+    // Fetch reservations from API with pagination
+    const fetchReservations = async (page = currentPage, status = selectedStatus) => {
         try {
             setLoading(true);
             setError('');
-            const response = await apiService.getAllReservations(1, 50);
+
+            // Convert 'all' to undefined for API call
+            const statusFilter = status === 'all' ? undefined : status;
+
+            const response = await apiService.getAllReservations(page, itemsPerPage, statusFilter);
             setReservations(response.reservations);
+            setTotalPages(response.pagination.pages);
+            setTotalReservations(response.pagination.total);
+            setCurrentPage(response.pagination.current);
         } catch (err) {
             console.error('Failed to fetch reservations:', err);
             setError(`${t('failedToLoadReservations') || 'Failed to load reservations'}: ${err instanceof Error ? err.message : 'Unknown error'}`);
@@ -50,18 +70,32 @@ const AdminPage: React.FC<AdminPageProps> = ({ onBack }) => {
         }
     };
 
-    // Load reservations when logged in
+    // Load reservations when logged in or when page/status changes
     useEffect(() => {
         if (isLoggedIn) {
-            fetchReservations();
+            fetchReservations(1, selectedStatus); // Reset to page 1 when status changes
         }
-    }, [isLoggedIn]);
+    }, [isLoggedIn, selectedStatus]);
+
+    // Handle page change
+    const handlePageChange = (page: number) => {
+        if (page >= 1 && page <= totalPages) {
+            setCurrentPage(page);
+            fetchReservations(page, selectedStatus);
+        }
+    };
+
+    // Handle status filter change
+    const handleStatusChange = (status: 'all' | 'pending' | 'approved' | 'disapproved') => {
+        setSelectedStatus(status);
+        setCurrentPage(1); // Reset to first page when changing filter
+    };
 
     // Update reservation status
     const updateReservationStatus = async (id: string, status: 'approved' | 'disapproved', rejectionMessage?: string) => {
         try {
             await apiService.updateReservationStatus(id, status, rejectionMessage);
-            await fetchReservations();
+            await fetchReservations(currentPage, selectedStatus); // Refresh current page
 
             // Show success message with email notification info
             const statusMessage = status === 'approved'
@@ -85,7 +119,7 @@ const AdminPage: React.FC<AdminPageProps> = ({ onBack }) => {
 
         try {
             await apiService.deleteReservation(id);
-            await fetchReservations();
+            await fetchReservations(currentPage, selectedStatus); // Refresh current page
             closeDeleteModal();
         } catch (err) {
             console.error('Failed to delete reservation:', err);
@@ -129,11 +163,6 @@ const AdminPage: React.FC<AdminPageProps> = ({ onBack }) => {
         }
     };
 
-    // Filter reservations based on selected status
-    const filteredReservations = selectedStatus === 'all'
-        ? reservations
-        : reservations.filter(r => r.status === selectedStatus);
-
     // Room name mapping
     const getRoomName = (roomId: string) => {
         const roomNames: { [key: string]: string } = {
@@ -153,17 +182,23 @@ const AdminPage: React.FC<AdminPageProps> = ({ onBack }) => {
             authorizedEmail.toLowerCase() === email.toLowerCase()
         ) || email.toLowerCase() === 'admin';
 
-        if (isAuthorizedEmail) {
+        // Check if password matches
+        const isValidPassword = password === ADMIN_PASSWORD;
+
+        if (isAuthorizedEmail && isValidPassword) {
             setIsLoggedIn(true);
             setError('');
-        } else {
+        } else if (!isAuthorizedEmail) {
             setError(t('unauthorizedEmail') || 'This email is not authorized to access the admin panel.');
+        } else {
+            setError(t('invalidPassword') || 'Invalid password. Please try again.');
         }
     };
 
     const handleLogout = () => {
         setIsLoggedIn(false);
         setEmail('');
+        setPassword('');
         setReservations([]);
         setError('');
     };
@@ -186,10 +221,10 @@ const AdminPage: React.FC<AdminPageProps> = ({ onBack }) => {
         }
     };
 
-    // Calculate statistics
-    const pendingCount = filteredReservations.filter(r => r.status === 'pending').length;
-    const approvedCount = filteredReservations.filter(r => r.status === 'approved').length;
-    const disapprovedCount = filteredReservations.filter(r => r.status === 'disapproved').length;
+    // Calculate statistics - now we need to fetch all counts separately or show current page stats
+    const pendingCount = reservations.filter(r => r.status === 'pending').length;
+    const approvedCount = reservations.filter(r => r.status === 'approved').length;
+    const disapprovedCount = reservations.filter(r => r.status === 'disapproved').length;
 
     if (!isLoggedIn) {
         return (
@@ -240,6 +275,25 @@ const AdminPage: React.FC<AdminPageProps> = ({ onBack }) => {
                                 </div>
                             </div>
 
+                            <div>
+                                <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+                                    {t('password') || 'Password'}
+                                </label>
+                                <div className="mt-1">
+                                    <input
+                                        id="password"
+                                        name="password"
+                                        type="password"
+                                        autoComplete="current-password"
+                                        required
+                                        value={password}
+                                        onChange={(e) => setPassword(e.target.value)}
+                                        className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                                        placeholder={t('enterPassword') || 'Enter admin password'}
+                                    />
+                                </div>
+                            </div>
+
                             {error && (
                                 <div className="text-red-600 text-sm text-center">
                                     {error}
@@ -259,7 +313,7 @@ const AdminPage: React.FC<AdminPageProps> = ({ onBack }) => {
                         <div className="mt-6">
                             <div className="mt-3 text-center text-sm text-gray-600">
                                 <div className="mt-3 pt-2 border-t border-gray-200 text-xs text-gray-500">
-                                    {t('emailOnlyAccess') || 'Simply enter your authorized email to access the admin panel'}
+                                    {t('emailPasswordAccess') || 'Enter your authorized email and admin password to access the panel'}
                                 </div>
                             </div>
                         </div>
@@ -376,7 +430,7 @@ const AdminPage: React.FC<AdminPageProps> = ({ onBack }) => {
                         <div className="flex items-center space-x-4">
                             <select
                                 value={selectedStatus}
-                                onChange={(e) => setSelectedStatus(e.target.value as any)}
+                                onChange={(e) => handleStatusChange(e.target.value as any)}
                                 className="px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                             >
                                 <option value="all">{t('allStatus') || 'All Status'}</option>
@@ -385,7 +439,7 @@ const AdminPage: React.FC<AdminPageProps> = ({ onBack }) => {
                                 <option value="disapproved">{t('disapproved') || 'Disapproved'}</option>
                             </select>
                             <button
-                                onClick={fetchReservations}
+                                onClick={() => fetchReservations(currentPage, selectedStatus)}
                                 className="px-4 py-2 bg-blue-600 text-white text-sm rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
                             >
                                 {t('refresh') || 'Refresh'}
@@ -403,19 +457,19 @@ const AdminPage: React.FC<AdminPageProps> = ({ onBack }) => {
                                 <AlertCircle className="h-8 w-8 text-red-500 mx-auto mb-4" />
                                 <p className="text-red-600">{error}</p>
                                 <button
-                                    onClick={fetchReservations}
+                                    onClick={() => fetchReservations(currentPage, selectedStatus)}
                                     className="mt-2 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
                                 >
                                     {t('retry') || 'Retry'}
                                 </button>
                             </div>
-                        ) : filteredReservations.length === 0 ? (
+                        ) : reservations.length === 0 ? (
                             <div className="text-center py-8">
                                 <Calendar className="h-8 w-8 text-gray-400 mx-auto mb-4" />
                                 <p className="text-gray-600">{t('noReservationsFound') || 'No reservations found'}</p>
                             </div>
                         ) : (
-                            filteredReservations.map((reservation) => (
+                            reservations.map((reservation) => (
                                 <li key={reservation._id}>
                                     <div className="px-4 py-4 sm:px-6">
                                         <div className="flex items-center justify-between">
@@ -483,6 +537,115 @@ const AdminPage: React.FC<AdminPageProps> = ({ onBack }) => {
                             ))
                         )}
                     </ul>
+
+                    {/* Pagination */}
+                    {totalPages > 1 && (
+                        <div className="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6">
+                            <div className="flex-1 flex justify-between sm:hidden">
+                                {/* Mobile pagination */}
+                                <button
+                                    onClick={() => handlePageChange(currentPage - 1)}
+                                    disabled={currentPage === 1}
+                                    className={`relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md ${currentPage === 1
+                                        ? 'text-gray-400 bg-gray-100 cursor-not-allowed'
+                                        : 'text-gray-700 bg-white hover:bg-gray-50'
+                                        }`}
+                                >
+                                    {t('previous') || 'Previous'}
+                                </button>
+                                <button
+                                    onClick={() => handlePageChange(currentPage + 1)}
+                                    disabled={currentPage === totalPages}
+                                    className={`ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md ${currentPage === totalPages
+                                        ? 'text-gray-400 bg-gray-100 cursor-not-allowed'
+                                        : 'text-gray-700 bg-white hover:bg-gray-50'
+                                        }`}
+                                >
+                                    {t('next') || 'Next'}
+                                </button>
+                            </div>
+                            <div className="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
+                                <div>
+                                    <p className="text-sm text-gray-700">
+                                        Showing{' '}
+                                        <span className="font-medium">{((currentPage - 1) * itemsPerPage) + 1}</span>
+                                        {' '}to{' '}
+                                        <span className="font-medium">
+                                            {Math.min(currentPage * itemsPerPage, totalReservations)}
+                                        </span>
+                                        {' '}of{' '}
+                                        <span className="font-medium">{totalReservations}</span>
+                                        {' '}results
+                                    </p>
+                                </div>
+                                <div>
+                                    <nav className="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
+                                        {/* Previous button */}
+                                        <button
+                                            onClick={() => handlePageChange(currentPage - 1)}
+                                            disabled={currentPage === 1}
+                                            className={`relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 text-sm font-medium ${currentPage === 1
+                                                ? 'text-gray-400 bg-gray-100 cursor-not-allowed'
+                                                : 'text-gray-500 bg-white hover:bg-gray-50'
+                                                }`}
+                                        >
+                                            <span className="sr-only">{t('previous') || 'Previous'}</span>
+                                            <ChevronLeft className="h-5 w-5" aria-hidden="true" />
+                                        </button>
+
+                                        {/* Page numbers */}
+                                        {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => {
+                                            // Show first page, last page, current page, and pages around current page
+                                            const showPage = page === 1 ||
+                                                page === totalPages ||
+                                                (page >= currentPage - 1 && page <= currentPage + 1);
+
+                                            if (!showPage) {
+                                                // Show ellipsis for gaps
+                                                if (page === currentPage - 2 || page === currentPage + 2) {
+                                                    return (
+                                                        <span
+                                                            key={page}
+                                                            className="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700"
+                                                        >
+                                                            ...
+                                                        </span>
+                                                    );
+                                                }
+                                                return null;
+                                            }
+
+                                            return (
+                                                <button
+                                                    key={page}
+                                                    onClick={() => handlePageChange(page)}
+                                                    className={`relative inline-flex items-center px-4 py-2 border text-sm font-medium ${page === currentPage
+                                                        ? 'z-10 bg-blue-50 border-blue-500 text-blue-600'
+                                                        : 'bg-white border-gray-300 text-gray-500 hover:bg-gray-50'
+                                                        }`}
+                                                >
+                                                    {page}
+                                                </button>
+                                            );
+                                        })}
+
+                                        {/* Next button */}
+                                        <button
+                                            onClick={() => handlePageChange(currentPage + 1)}
+                                            disabled={currentPage === totalPages}
+                                            className={`relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 text-sm font-medium ${currentPage === totalPages
+                                                ? 'text-gray-400 bg-gray-100 cursor-not-allowed'
+                                                : 'text-gray-500 bg-white hover:bg-gray-50'
+                                                }`}
+                                        >
+                                            <span className="sr-only">{t('next') || 'Next'}</span>
+                                            <ChevronRight className="h-5 w-5" aria-hidden="true" />
+                                        </button>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    )}
                 </div>
             </div>
 
