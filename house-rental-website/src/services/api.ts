@@ -102,6 +102,21 @@ class ApiService {
         }>(`/reservations?${params}`);
     }
 
+    // Get reservation statistics (for admin dashboard)
+    async getReservationStats(): Promise<{
+        total: number;
+        pending: number;
+        approved: number;
+        disapproved: number;
+    }> {
+        return this.request<{
+            total: number;
+            pending: number;
+            approved: number;
+            disapproved: number;
+        }>('/reservations/stats');
+    }
+
     // Get reservation by ID
     async getReservationById(id: string): Promise<{ reservation: Reservation }> {
         return this.request<{ reservation: Reservation }>(`/reservations/${id}`);
@@ -147,6 +162,7 @@ export const {
     checkAvailability,
     createReservation,
     getAllReservations,
+    getReservationStats,
     getReservationById,
     updateReservationStatus,
     deleteReservation,

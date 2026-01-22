@@ -25,6 +25,14 @@ const AdminPage: React.FC<AdminPageProps> = ({ onBack }) => {
     const [totalReservations, setTotalReservations] = useState(0);
     const [itemsPerPage] = useState(10); // Fixed items per page
 
+    // Overall statistics state
+    const [overallStats, setOverallStats] = useState({
+        total: 0,
+        pending: 0,
+        approved: 0,
+        disapproved: 0
+    });
+
     const [disapprovalModal, setDisapprovalModal] = useState<{
         isOpen: boolean;
         reservation: Reservation | null;
@@ -48,6 +56,17 @@ const AdminPage: React.FC<AdminPageProps> = ({ onBack }) => {
     // TO CHANGE PASSWORD: Update this value
     const ADMIN_PASSWORD = 'HouseRental2024!'; // Change this to your desired password
 
+    // Fetch overall statistics
+    const fetchStats = async () => {
+        try {
+            const stats = await apiService.getReservationStats();
+            setOverallStats(stats);
+        } catch (err) {
+            console.error('Failed to fetch stats:', err);
+            // Don't show error for stats, just keep old values
+        }
+    };
+
     // Fetch reservations from API with pagination
     const fetchReservations = async (page = currentPage, status = selectedStatus) => {
         try {
@@ -70,10 +89,11 @@ const AdminPage: React.FC<AdminPageProps> = ({ onBack }) => {
         }
     };
 
-    // Load reservations when logged in or when page/status changes
+    // Load reservations and stats when logged in or when page/status changes
     useEffect(() => {
         if (isLoggedIn) {
             fetchReservations(1, selectedStatus); // Reset to page 1 when status changes
+            fetchStats(); // Always fetch overall stats
         }
     }, [isLoggedIn, selectedStatus]);
 
@@ -96,6 +116,7 @@ const AdminPage: React.FC<AdminPageProps> = ({ onBack }) => {
         try {
             await apiService.updateReservationStatus(id, status, rejectionMessage);
             await fetchReservations(currentPage, selectedStatus); // Refresh current page
+            await fetchStats(); // Refresh overall stats
 
             // Show success message with email notification info
             const statusMessage = status === 'approved'
@@ -120,6 +141,7 @@ const AdminPage: React.FC<AdminPageProps> = ({ onBack }) => {
         try {
             await apiService.deleteReservation(id);
             await fetchReservations(currentPage, selectedStatus); // Refresh current page
+            await fetchStats(); // Refresh overall stats
             closeDeleteModal();
         } catch (err) {
             console.error('Failed to delete reservation:', err);
@@ -222,9 +244,9 @@ const AdminPage: React.FC<AdminPageProps> = ({ onBack }) => {
     };
 
     // Calculate statistics - now we need to fetch all counts separately or show current page stats
-    const pendingCount = reservations.filter(r => r.status === 'pending').length;
-    const approvedCount = reservations.filter(r => r.status === 'approved').length;
-    const disapprovedCount = reservations.filter(r => r.status === 'disapproved').length;
+    const pendingCount = overallStats.pending;
+    const approvedCount = overallStats.approved;
+    const disapprovedCount = overallStats.disapproved;
 
     if (!isLoggedIn) {
         return (
@@ -364,7 +386,7 @@ const AdminPage: React.FC<AdminPageProps> = ({ onBack }) => {
                                 <div className="ml-5 w-0 flex-1">
                                     <dl>
                                         <dt className="text-sm font-medium text-gray-500 truncate">{t('totalReservations') || 'Total Reservations'}</dt>
-                                        <dd className="text-lg font-medium text-gray-900">{reservations.length}</dd>
+                                        <dd className="text-lg font-medium text-gray-900">{overallStats.total}</dd>
                                     </dl>
                                 </div>
                             </div>
@@ -439,7 +461,10 @@ const AdminPage: React.FC<AdminPageProps> = ({ onBack }) => {
                                 <option value="disapproved">{t('disapproved') || 'Disapproved'}</option>
                             </select>
                             <button
-                                onClick={() => fetchReservations(currentPage, selectedStatus)}
+                                onClick={() => {
+                                    fetchReservations(currentPage, selectedStatus);
+                                    fetchStats();
+                                }}
                                 className="px-4 py-2 bg-blue-600 text-white text-sm rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
                             >
                                 {t('refresh') || 'Refresh'}
@@ -457,7 +482,10 @@ const AdminPage: React.FC<AdminPageProps> = ({ onBack }) => {
                                 <AlertCircle className="h-8 w-8 text-red-500 mx-auto mb-4" />
                                 <p className="text-red-600">{error}</p>
                                 <button
-                                    onClick={() => fetchReservations(currentPage, selectedStatus)}
+                                    onClick={() => {
+                                        fetchReservations(currentPage, selectedStatus);
+                                        fetchStats();
+                                    }}
                                     className="mt-2 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
                                 >
                                     {t('retry') || 'Retry'}
