@@ -20,7 +20,7 @@ export const sr = {
     galleryViewAll: 'Pogledajte sve fotografije',
     galleryPhotos: 'fotografija',
     galleryBack: 'Nazad',
-    galleryFullTitle: 'Kompletna foto galerija',
+    galleryFullTitle: 'Foto galerija',
     galleryExterior: 'Spoljašnjost',
     galleryInterior: 'Unutrašnjost',
     galleryLivingRoom: 'Dnevna soba',
@@ -241,7 +241,7 @@ export const sr = {
     // Availability
     checkAvailability: 'Provjeri dostupnost',
     roomAvailability: 'Dostupnost soba',
-    backToRooms: 'Nazad na sobe',
+    backToRooms: 'Nazad',
     previousMonth: 'Prethodni mjesec',
     nextMonth: 'Sljedeći mjesec',
     available: 'Dostupno',
@@ -269,7 +269,7 @@ export const sr = {
     // Admin Panel
     adminLogin: 'Admin prijava',
     adminDashboard: 'Admin panel',
-    backToMain: 'Nazad na glavnu',
+    backToMain: 'Nazad',
     signIn: 'Prijavite se',
     demoCredentials: 'Demo podaci',
     invalidCredentials: 'Neispravni podaci. Koristite admin@admin.com/admin za demo.',

@@ -76,10 +76,10 @@ const FullGallery: React.FC<FullGalleryProps> = ({ images, onBack }) => {
                         </button>
 
                         <div className="absolute left-1/2 transform -translate-x-1/2 text-center">
-                            <h1 className="text-2xl font-bold text-gray-900">
+                            <h1 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900">
                                 {t('galleryFullTitle') || 'Photo Gallery'}
                             </h1>
-                            <p className="text-sm text-gray-600 mt-1">
+                            <p className="text-xs sm:text-sm text-gray-600 mt-1">
                                 {images.length} {t('galleryPhotos') || 'photos'}
                             </p>
                         </div>

@@ -203,16 +203,16 @@ const AvailabilityPage: React.FC<AvailabilityPageProps> = ({ onBack, onBookNow }
             {/* Header */}
             <div className="bg-white shadow-sm">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-                    <div className="flex items-center justify-between py-6">
+                    <div className="flex items-center justify-between py-4 sm:py-6">
                         <button
                             onClick={onBack}
                             className="flex items-center text-gray-600 hover:text-gray-900 transition-colors"
                         >
-                            <ArrowLeft className="w-5 h-5 mr-2" />
-                            {t('backToRooms') || 'Back to Rooms'}
+                            <ArrowLeft className="w-4 h-4 sm:w-5 sm:h-5 mr-1 sm:mr-2" />
+                            <span className="text-sm sm:text-base">{t('backToRooms') || 'Back to Rooms'}</span>
                         </button>
 
-                        <h1 className="text-2xl font-bold text-gray-900 absolute left-1/2 transform -translate-x-1/2">
+                        <h1 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 absolute left-1/2 transform -translate-x-1/2 text-center px-2">
                             {t('roomAvailability') || 'Room Availability'}
                         </h1>
 
@@ -248,50 +248,52 @@ const AvailabilityPage: React.FC<AvailabilityPageProps> = ({ onBack, onBookNow }
                 {!loading && (
                     <>
                         {/* Month Navigation */}
-                        <div className="flex items-center justify-between mb-8 bg-white rounded-lg shadow-sm p-6">
+                        <div className="flex flex-col sm:flex-row items-center justify-between mb-6 sm:mb-8 bg-white rounded-lg shadow-sm p-4 sm:p-6 space-y-4 sm:space-y-0">
                             <button
                                 onClick={() => navigateMonth('prev')}
-                                className="flex items-center px-4 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors"
+                                className="flex items-center px-3 sm:px-4 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors text-sm sm:text-base"
                             >
-                                <ChevronLeft className="w-5 h-5 mr-1" />
-                                {t('previousMonth') || 'Previous'}
+                                <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 mr-1" />
+                                <span className="hidden sm:inline">{t('previousMonth') || 'Previous'}</span>
+                                <span className="sm:hidden">{t('previous') || 'Prev'}</span>
                             </button>
 
                             <div className="text-center">
-                                <h2 className="text-xl font-semibold text-gray-900">
+                                <h2 className="text-lg sm:text-xl font-semibold text-gray-900">
                                     {getMonthName(currentMonth)}
                                 </h2>
-                                <p className="text-sm text-gray-600 mt-1">
+                                <p className="text-xs sm:text-sm text-gray-600 mt-1">
                                     {t('selectDatesToCheck') || 'Select dates to check availability'}
                                 </p>
                             </div>
 
                             <button
                                 onClick={() => navigateMonth('next')}
-                                className="flex items-center px-4 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors"
+                                className="flex items-center px-3 sm:px-4 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors text-sm sm:text-base"
                             >
-                                {t('nextMonth') || 'Next'}
-                                <ChevronRight className="w-5 h-5 ml-1" />
+                                <span className="hidden sm:inline">{t('nextMonth') || 'Next'}</span>
+                                <span className="sm:hidden">{t('next') || 'Next'}</span>
+                                <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 ml-1" />
                             </button>
                         </div>
 
                         {/* Legend */}
-                        <div className="flex items-center justify-center space-x-8 mb-8 p-4 bg-white rounded-lg shadow-sm">
+                        <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-8 mb-6 sm:mb-8 p-3 sm:p-4 bg-white rounded-lg shadow-sm">
                             <div className="flex items-center space-x-2">
-                                <CheckCircle className="w-4 h-4 text-green-600" />
-                                <span className="text-sm font-medium text-gray-700">
+                                <CheckCircle className="w-3 h-3 sm:w-4 sm:h-4 text-green-600" />
+                                <span className="text-xs sm:text-sm font-medium text-gray-700">
                                     {t('available') || 'Available'}
                                 </span>
                             </div>
                             <div className="flex items-center space-x-2">
-                                <Clock className="w-4 h-4 text-yellow-600" />
-                                <span className="text-sm font-medium text-gray-700">
+                                <Clock className="w-3 h-3 sm:w-4 sm:h-4 text-yellow-600" />
+                                <span className="text-xs sm:text-sm font-medium text-gray-700">
                                     {t('pending') || 'Pending'}
                                 </span>
                             </div>
                             <div className="flex items-center space-x-2">
-                                <XCircle className="w-4 h-4 text-red-600" />
-                                <span className="text-sm font-medium text-gray-700">
+                                <XCircle className="w-3 h-3 sm:w-4 sm:h-4 text-red-600" />
+                                <span className="text-xs sm:text-sm font-medium text-gray-700">
                                     {t('booked') || 'Booked'}
                                 </span>
                             </div>
@@ -301,7 +303,7 @@ const AvailabilityPage: React.FC<AvailabilityPageProps> = ({ onBack, onBookNow }
 
                 {/* Rooms Grid */}
                 {!loading && (
-                    <div className="flex flex-wrap gap-8 justify-center xl:justify-start">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
                         {rooms.map((room) => {
                             const availability = generateAvailabilityData(
                                 room.id,
@@ -311,12 +313,12 @@ const AvailabilityPage: React.FC<AvailabilityPageProps> = ({ onBack, onBookNow }
                             const days = getDaysInMonth(currentMonth);
 
                             return (
-                                <div key={room.id} className="w-full xl:w-[calc(50%-1rem)] flex">
+                                <div key={room.id} className="w-full">
                                     <Card className="overflow-hidden flex flex-col h-full w-full">
                                         {/* Room Header - Fixed Height */}
-                                        <div className="p-6 border-b border-gray-200 bg-gradient-to-r from-blue-50 to-indigo-50 flex-shrink-0">
-                                            <div className="flex items-start space-x-4">
-                                                <div className="w-20 h-20 bg-gray-200 rounded-xl overflow-hidden flex-shrink-0">
+                                        <div className="p-3 sm:p-4 lg:p-6 border-b border-gray-200 bg-gradient-to-r from-blue-50 to-indigo-50 flex-shrink-0">
+                                            <div className="flex items-start space-x-3 sm:space-x-4">
+                                                <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gray-200 rounded-xl overflow-hidden flex-shrink-0">
                                                     <img
                                                         src={room.image}
                                                         alt={room.name}
@@ -332,24 +334,24 @@ const AvailabilityPage: React.FC<AvailabilityPageProps> = ({ onBack, onBookNow }
                                                         }}
                                                     />
                                                 </div>
-                                                <div className="flex-grow min-h-[80px] flex flex-col justify-between">
+                                                <div className="flex-grow min-h-[64px] sm:min-h-[80px] flex flex-col justify-between">
                                                     <div>
-                                                        <h3 className="text-lg font-semibold text-gray-900 mb-1">
+                                                        <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-1">
                                                             {room.name}
                                                         </h3>
-                                                        <p className="text-sm text-gray-600 mb-2 leading-relaxed overflow-hidden"
+                                                        <p className="text-xs sm:text-sm text-gray-600 mb-2 leading-relaxed overflow-hidden"
                                                             style={{
                                                                 display: '-webkit-box',
-                                                                WebkitLineClamp: 3,
+                                                                WebkitLineClamp: 2,
                                                                 WebkitBoxOrient: 'vertical',
-                                                                maxHeight: '4.5rem'
+                                                                maxHeight: '3rem'
                                                             }}>
                                                             {room.description}
                                                         </p>
                                                     </div>
-                                                    <div className="flex items-center space-x-4 text-sm mt-auto">
+                                                    <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-4 text-xs sm:text-sm mt-auto space-y-1 sm:space-y-0">
                                                         <div className="flex items-center space-x-1 text-gray-600">
-                                                            <Users className="w-4 h-4" />
+                                                            <Users className="w-3 h-3 sm:w-4 sm:h-4" />
                                                             <span>{room.capacity} {t('guests') || 'guests'}</span>
                                                         </div>
                                                         <div className="font-semibold text-blue-600">
@@ -361,12 +363,13 @@ const AvailabilityPage: React.FC<AvailabilityPageProps> = ({ onBack, onBookNow }
                                         </div>
 
                                         {/* Calendar - Flexible Height */}
-                                        <div className="p-6 flex-grow flex flex-col">
+                                        <div className="p-3 sm:p-4 lg:p-6 flex-grow flex flex-col">
                                             {/* Calendar Header */}
-                                            <div className="grid grid-cols-7 gap-1 mb-3">
+                                            <div className="grid grid-cols-7 gap-1 mb-2 sm:mb-3">
                                                 {dayNames.map((day) => (
-                                                    <div key={day} className="text-center text-xs font-semibold text-gray-500 py-2">
-                                                        {day}
+                                                    <div key={day} className="text-center text-xs font-semibold text-gray-500 py-1 sm:py-2">
+                                                        <span className="hidden sm:inline">{day}</span>
+                                                        <span className="sm:hidden">{day.slice(0, 1)}</span>
                                                     </div>
                                                 ))}
                                             </div>
@@ -375,7 +378,7 @@ const AvailabilityPage: React.FC<AvailabilityPageProps> = ({ onBack, onBookNow }
                                             <div className="grid grid-cols-7 gap-1 flex-grow">
                                                 {days.map((day, index) => {
                                                     if (day === null) {
-                                                        return <div key={index} className="h-10"></div>;
+                                                        return <div key={index} className="h-8 sm:h-10"></div>;
                                                     }
 
                                                     const dayData = availability.find(d =>
@@ -400,16 +403,20 @@ const AvailabilityPage: React.FC<AvailabilityPageProps> = ({ onBack, onBookNow }
                                                         <div
                                                             key={day}
                                                             className={`
-                                                            h-10 flex items-center justify-center text-sm rounded-lg border transition-all cursor-pointer
+                                                            h-8 sm:h-10 flex items-center justify-center text-xs sm:text-sm rounded-lg border transition-all cursor-pointer
                                                             ${getStatusStyle(status)}
-                                                            ${isToday ? 'ring-2 ring-blue-400 ring-offset-1' : ''}
+                                                            ${isToday ? 'ring-1 sm:ring-2 ring-blue-400 ring-offset-1' : ''}
                                                             ${status === 'available' ? 'hover:scale-105' : 'cursor-not-allowed'}
                                                         `}
                                                             title={tooltipText}
                                                         >
                                                             <div className="flex items-center space-x-1">
                                                                 <span className="font-medium">{day}</span>
-                                                                {status !== 'available' && getStatusIcon(status)}
+                                                                {status !== 'available' && (
+                                                                    <span className="hidden sm:inline">
+                                                                        {getStatusIcon(status)}
+                                                                    </span>
+                                                                )}
                                                             </div>
                                                         </div>
                                                     );
@@ -417,23 +424,23 @@ const AvailabilityPage: React.FC<AvailabilityPageProps> = ({ onBack, onBookNow }
                                             </div>
 
                                             {/* Room Statistics - Fixed at Bottom */}
-                                            <div className="mt-6 pt-4 border-t border-gray-200 flex-shrink-0">
-                                                <div className="flex items-center justify-between">
-                                                    <div className="flex items-center space-x-6 text-sm">
+                                            <div className="mt-4 sm:mt-6 pt-3 sm:pt-4 border-t border-gray-200 flex-shrink-0">
+                                                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-3 sm:space-y-0">
+                                                    <div className="flex flex-wrap items-center gap-3 sm:gap-6 text-xs sm:text-sm">
                                                         <div className="flex items-center space-x-1">
-                                                            <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                                                            <div className="w-2 h-2 sm:w-3 sm:h-3 bg-green-500 rounded-full"></div>
                                                             <span className="text-gray-600">
                                                                 {availability.filter(d => d.status === 'available').length} {t('available') || 'available'}
                                                             </span>
                                                         </div>
                                                         <div className="flex items-center space-x-1">
-                                                            <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+                                                            <div className="w-2 h-2 sm:w-3 sm:h-3 bg-red-500 rounded-full"></div>
                                                             <span className="text-gray-600">
                                                                 {availability.filter(d => d.status === 'booked').length} {t('booked') || 'booked'}
                                                             </span>
                                                         </div>
                                                         <div className="flex items-center space-x-1">
-                                                            <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                                                            <div className="w-2 h-2 sm:w-3 sm:h-3 bg-yellow-500 rounded-full"></div>
                                                             <span className="text-gray-600">
                                                                 {availability.filter(d => d.status === 'pending').length} {t('pending') || 'pending'}
                                                             </span>
@@ -441,7 +448,7 @@ const AvailabilityPage: React.FC<AvailabilityPageProps> = ({ onBack, onBookNow }
                                                     </div>
                                                     <button
                                                         onClick={() => onBookNow?.(room.id)}
-                                                        className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg transition-colors"
+                                                        className="w-full sm:w-auto px-3 sm:px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs sm:text-sm font-medium rounded-lg transition-colors"
                                                     >
                                                         {t('bookNow') || 'Book Now'}
                                                     </button>
