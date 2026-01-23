@@ -20,7 +20,7 @@ export const en = {
     galleryViewAll: 'View All Photos',
     galleryPhotos: 'photos',
     galleryBack: 'Back',
-    galleryFullTitle: 'Complete Photo Gallery',
+    galleryFullTitle: 'Photo Gallery',
     galleryExterior: 'Exterior',
     galleryInterior: 'Interior',
     galleryLivingRoom: 'Living Room',
@@ -280,7 +280,7 @@ export const en = {
     // Availability
     checkAvailability: 'Check Availability',
     roomAvailability: 'Room Availability',
-    backToRooms: 'Back to Rooms',
+    backToRooms: 'Back',
     previousMonth: 'Previous Month',
     nextMonth: 'Next Month',
     available: 'Available',
