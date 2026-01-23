@@ -71,7 +71,6 @@ const Attractions: React.FC = () => {
     return (
         <section id="attractions" className="py-16 bg-white">
             <Helmet>
-                <title>Atrakcije oko Čajniča - Jahorina Skijanje, Drina Rafting, Višegrad | Smještaj</title>
                 <meta name="description" content="Otkrijte najbolje atrakcije oko našeg smještaja u Čajniču: Jahorina skijanje (90km), Drina rafting (70km), Višegrad Andrićgrad (60km), planinarenje i priroda. Idealna lokacija za turistički odmor." />
                 <meta name="keywords" content="Jahorina skijanje smještaj, Drina rafting Čajniče, Višegrad Andrićgrad smještaj, planinarenje Čajniče, turistički smještaj Jahorina, rafting Drina prenoćište, Višegrad most smještaj, ski resort Jahorina, UNESCO most Višegrad, avanturizam Bosna" />
 
