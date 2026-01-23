@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { HelmetProvider, Helmet } from 'react-helmet-async';
 import { TranslationProvider } from './contexts/TranslationContext';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
@@ -70,6 +71,119 @@ function App() {
   const [showAdminPage, setShowAdminPage] = useState(false);
   const [showAvailabilityPage, setShowAvailabilityPage] = useState(false);
   const [selectedRoomId, setSelectedRoomId] = useState<string>('');
+
+  // SEO Component for Homepage
+  const HomepageSEO = () => {
+    return (
+      <Helmet>
+        <title>Smještaj Čajniče - Kuća za Iznajmljivanje | Prenoćište Bosna i Hercegovina</title>
+        <meta name="description" content="Luksuzni smještaj u Čajniču - kuća za iznajmljivanje sa 4 sobe, potpuno opremljena kuhinja, privatno kupatilo. Blizu Jahorine (skijanje 90km), Drine (rafting 70km), Višegrada (UNESCO most 60km). Idealno za porodice i grupe. Rezervišite vaš savršeni odmor u Bosni i Hercegovini." />
+        <meta name="keywords" content="smještaj Čajniče, kuća za iznajmljivanje, prenoćište Čajniče, apartman Čajniče, stan na dan, smještaj Bosna Hercegovina, odmor planine, turistički smještaj, rezervacija sobe, privatni smještaj, Jahorina skijanje smještaj, Drina rafting prenoćište, Višegrad smještaj, Andrićgrad apartman, UNESCO most smještaj, ski resort prenoćište, planinarenje smještaj" />
+
+        {/* Open Graph / Facebook */}
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Smještaj Čajniče - Kuća za Iznajmljivanje | Prenoćište Bosna i Hercegovina" />
+        <meta property="og:description" content="Luksuzni smještaj u Čajniču - kuća za iznajmljivanje sa 4 sobe. Blizu Jahorine (skijanje), Drine (rafting), Višegrada (UNESCO most). Idealno za porodice i grupe." />
+        <meta property="og:image" content="/images/house-exterior.jpg" />
+        <meta property="og:url" content="https://your-domain.com" />
+        <meta property="og:site_name" content="Smještaj Čajniče" />
+        <meta property="og:locale" content="sr_RS" />
+
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Smještaj Čajniče - Kuća za Iznajmljivanje" />
+        <meta name="twitter:description" content="Luksuzni smještaj u Čajniču - kuća za iznajmljivanje sa 4 sobe, potpuno opremljena kuhinja, privatno kupatilo." />
+        <meta name="twitter:image" content="/images/house-exterior.jpg" />
+
+        {/* Additional SEO */}
+        <meta name="robots" content="index, follow" />
+        <meta name="author" content="Smještaj Čajniče" />
+        <meta name="geo.region" content="BA" />
+        <meta name="geo.placename" content="Čajniče" />
+        <meta name="geo.position" content="43.5500;19.0500" />
+        <meta name="ICBM" content="43.5500, 19.0500" />
+
+        {/* Structured Data for Local Business */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "LodgingBusiness",
+            "name": "Smještaj Čajniče - Kuća za Iznajmljivanje",
+            "description": "Luksuzni smještaj u Čajniču sa 4 sobe, potpuno opremljena kuhinja, privatno kupatilo. Blizu Jahorine (skijanje), Drine (rafting), Višegrada (UNESCO most). Idealno za porodice i grupe.",
+            "url": "https://your-domain.com",
+            "telephone": "+387-XX-XXX-XXX",
+            "email": "info@smjestaj-cajnice.com",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Čajniče",
+              "addressRegion": "Republika Srpska",
+              "addressCountry": "BA"
+            },
+            "geo": {
+              "@type": "GeoCoordinates",
+              "latitude": "43.5500",
+              "longitude": "19.0500"
+            },
+            "amenityFeature": [
+              {
+                "@type": "LocationFeatureSpecification",
+                "name": "Besplatan WiFi",
+                "value": true
+              },
+              {
+                "@type": "LocationFeatureSpecification",
+                "name": "Klima uređaj",
+                "value": true
+              },
+              {
+                "@type": "LocationFeatureSpecification",
+                "name": "Privatno kupatilo",
+                "value": true
+              },
+              {
+                "@type": "LocationFeatureSpecification",
+                "name": "Potpuno opremljena kuhinja",
+                "value": true
+              },
+              {
+                "@type": "LocationFeatureSpecification",
+                "name": "Parking",
+                "value": true
+              }
+            ],
+            "priceRange": "30 BAM po osobi",
+            "starRating": {
+              "@type": "Rating",
+              "ratingValue": "5"
+            },
+            "image": [
+              "/images/house-exterior.jpg",
+              "/images/living-room.jpg",
+              "/images/bedroom.jpg",
+              "/images/kitchen.jpg"
+            ],
+            "nearbyAttraction": [
+              {
+                "@type": "SkiResort",
+                "name": "Jahorina Ski Resort",
+                "distance": "90 km"
+              },
+              {
+                "@type": "TouristAttraction",
+                "name": "Drina River Rafting",
+                "distance": "70 km"
+              },
+              {
+                "@type": "TouristAttraction",
+                "name": "Višegrad UNESCO Bridge",
+                "distance": "60 km"
+              }
+            ]
+          })}
+        </script>
+      </Helmet>
+    );
+  };
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -162,39 +276,42 @@ function App() {
   ];
 
   return (
-    <TranslationProvider>
-      {showAdminPage ? (
-        <AdminPage onBack={() => setShowAdminPage(false)} />
-      ) : showAvailabilityPage ? (
-        <AvailabilityPage
-          onBack={() => setShowAvailabilityPage(false)}
-          onBookNow={handleBookNow}
-        />
-      ) : showFullGallery ? (
-        <FullGallery
-          images={allHouseImages}
-          onBack={() => setShowFullGallery(false)}
-        />
-      ) : (
-        <div className="min-h-screen bg-white">
-          <Navbar onAdminClick={() => setShowAdminPage(true)} />
-          <Hero backgroundImage={heroImage} />
-          <main>
-            <Gallery
-              images={previewImages}
-              totalImages={allHouseImages.length}
-              onViewAllClick={() => setShowFullGallery(true)}
-            />
-            <Attractions />
-            <About />
-            <Rooms onCheckAvailability={() => setShowAvailabilityPage(true)} />
-            <Reservation selectedRoomId={selectedRoomId} />
-            <FAQ />
-          </main>
-          <Footer />
-        </div>
-      )}
-    </TranslationProvider>
+    <HelmetProvider>
+      <TranslationProvider>
+        {showAdminPage ? (
+          <AdminPage onBack={() => setShowAdminPage(false)} />
+        ) : showAvailabilityPage ? (
+          <AvailabilityPage
+            onBack={() => setShowAvailabilityPage(false)}
+            onBookNow={handleBookNow}
+          />
+        ) : showFullGallery ? (
+          <FullGallery
+            images={allHouseImages}
+            onBack={() => setShowFullGallery(false)}
+          />
+        ) : (
+          <div className="min-h-screen bg-white">
+            <HomepageSEO />
+            <Navbar onAdminClick={() => setShowAdminPage(true)} />
+            <Hero backgroundImage={heroImage} />
+            <main>
+              <Gallery
+                images={previewImages}
+                totalImages={allHouseImages.length}
+                onViewAllClick={() => setShowFullGallery(true)}
+              />
+              <Attractions />
+              <About />
+              <Rooms onCheckAvailability={() => setShowAvailabilityPage(true)} />
+              <Reservation selectedRoomId={selectedRoomId} />
+              <FAQ />
+            </main>
+            <Footer />
+          </div>
+        )}
+      </TranslationProvider>
+    </HelmetProvider>
   )
 }
 

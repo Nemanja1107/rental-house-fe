@@ -4,6 +4,7 @@ import { apiService, type Reservation } from '../../services/api';
 import DisapprovalModal from '../ui/DisapprovalModal';
 import DeleteModal from '../ui/DeleteModal';
 import { useTranslation } from '../../contexts/TranslationContext';
+import { Helmet } from 'react-helmet-async';
 
 interface AdminPageProps {
     onBack: () => void;
@@ -251,6 +252,11 @@ const AdminPage: React.FC<AdminPageProps> = ({ onBack }) => {
     if (!isLoggedIn) {
         return (
             <div className="min-h-screen bg-gray-50 pt-20 pb-8 sm:px-6 lg:px-8">
+                <Helmet>
+                    <title>Admin Prijava - Upravljanje Rezervacijama</title>
+                    <meta name="description" content="Admin panel za upravljanje rezervacijama smještaja. Pristup samo ovlašćenim korisnicima." />
+                    <meta name="robots" content="noindex, nofollow" />
+                </Helmet>
                 <div className="sm:mx-auto sm:w-full sm:max-w-md">
                     <button
                         onClick={onBack}
@@ -347,6 +353,11 @@ const AdminPage: React.FC<AdminPageProps> = ({ onBack }) => {
 
     return (
         <div className="min-h-screen bg-gray-50">
+            <Helmet>
+                <title>Admin Panel - Upravljanje Rezervacijama | Smještaj Čajniče</title>
+                <meta name="description" content="Admin panel za upravljanje rezervacijama, odobravanje zahtjeva i pregled statistika smještaja u Čajniču." />
+                <meta name="robots" content="noindex, nofollow" />
+            </Helmet>
             {/* Header */}
             <div className="bg-white shadow">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

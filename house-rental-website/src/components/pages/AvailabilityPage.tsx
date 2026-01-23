@@ -9,6 +9,7 @@ import room101Image from '../../assets/images/CB0A4806.jpg';
 import room102Image from '../../assets/images/CB0A4838.jpg';
 import room103Image from '../../assets/images/CB0A4835.jpg';
 import room104Image from '../../assets/images/CB0A4831.jpg';
+import { Helmet } from 'react-helmet-async';
 
 interface AvailabilityPageProps {
     onBack: () => void;
@@ -200,6 +201,14 @@ const AvailabilityPage: React.FC<AvailabilityPageProps> = ({ onBack, onBookNow }
 
     return (
         <div className="min-h-screen bg-gray-50">
+            <Helmet>
+                <title>Dostupnost Soba - Provjera Termina | Smještaj Čajniče</title>
+                <meta name="description" content="Provjerite dostupnost soba u našem smještaju u Čajniču. Kalendar rezervacija za apartmane i sobe. Rezervišite vaš termin online za savršen odmor." />
+                <meta name="keywords" content="dostupnost soba Čajniče, kalendar rezervacija, provjera termina, rezervacija smještaj, slobodni termini, booking Čajniče" />
+                <meta property="og:title" content="Dostupnost Soba - Provjera Termina | Smještaj Čajniče" />
+                <meta property="og:description" content="Provjerite dostupnost soba u našem smještaju u Čajniču. Kalendar rezervacija za apartmane i sobe." />
+                <meta name="robots" content="index, follow" />
+            </Helmet>
             {/* Header */}
             <div className="bg-white shadow-sm">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">

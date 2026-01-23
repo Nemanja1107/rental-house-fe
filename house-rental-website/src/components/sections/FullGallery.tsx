@@ -3,6 +3,7 @@ import { ArrowLeft } from 'lucide-react';
 import type { GalleryImage } from '../../types';
 import { useTranslation } from '../../contexts/TranslationContext';
 import Lightbox from '../ui/Lightbox';
+import { Helmet } from 'react-helmet-async';
 
 interface FullGalleryProps {
     images: GalleryImage[];
@@ -63,6 +64,14 @@ const FullGallery: React.FC<FullGalleryProps> = ({ images, onBack }) => {
 
     return (
         <div className="min-h-screen bg-gray-50">
+            <Helmet>
+                <title>Foto Galerija - Slike Smještaja | Kuća za Iznajmljivanje Čajniče</title>
+                <meta name="description" content="Pogledajte kompletnu foto galeriju našeg smještaja u Čajniču. Slike soba, kuhinje, kupatila, dnevne sobe i spoljašnjosti kuće. Uvjerite se u kvalitet našeg smještaja." />
+                <meta name="keywords" content="foto galerija Čajniče, slike smještaj, fotografije kuća, interijer apartman, spoljašnjost kuća, sobe fotografije" />
+                <meta property="og:title" content="Foto Galerija - Slike Smještaja | Kuća za Iznajmljivanje Čajniče" />
+                <meta property="og:description" content="Pogledajte kompletnu foto galeriju našeg smještaja u Čajniču. Slike soba, kuhinje, kupatila i spoljašnjosti." />
+                <meta name="robots" content="index, follow" />
+            </Helmet>
             {/* Header */}
             <div className="bg-white shadow-sm">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">

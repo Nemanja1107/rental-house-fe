@@ -1,4 +1,5 @@
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
 import {
     MapPin,
     Mountain,
@@ -69,6 +70,85 @@ const Attractions: React.FC = () => {
 
     return (
         <section id="attractions" className="py-16 bg-white">
+            <Helmet>
+                <title>Atrakcije oko Čajniča - Jahorina Skijanje, Drina Rafting, Višegrad | Smještaj</title>
+                <meta name="description" content="Otkrijte najbolje atrakcije oko našeg smještaja u Čajniču: Jahorina skijanje (90km), Drina rafting (70km), Višegrad Andrićgrad (60km), planinarenje i priroda. Idealna lokacija za turistički odmor." />
+                <meta name="keywords" content="Jahorina skijanje smještaj, Drina rafting Čajniče, Višegrad Andrićgrad smještaj, planinarenje Čajniče, turistički smještaj Jahorina, rafting Drina prenoćište, Višegrad most smještaj, ski resort Jahorina, UNESCO most Višegrad, avanturizam Bosna" />
+
+                {/* Open Graph */}
+                <meta property="og:title" content="Atrakcije oko Čajniča - Jahorina, Drina Rafting, Višegrad | Smještaj" />
+                <meta property="og:description" content="Savršena lokacija za pristup Jahorini (skijanje), Drini (rafting), Višegradu (UNESCO most). Rezervišite smještaj u Čajniču za nezaboravan odmor." />
+                <meta property="og:type" content="article" />
+
+                {/* Structured Data for Tourist Attractions */}
+                <script type="application/ld+json">
+                    {JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": "TouristAttraction",
+                        "name": "Atrakcije oko Čajniča - Turistički Smještaj",
+                        "description": "Smještaj u Čajniču sa pristupom najboljim atrakcijama: Jahorina skijanje, Drina rafting, Višegrad UNESCO most",
+                        "url": "https://your-domain.com#attractions",
+                        "address": {
+                            "@type": "PostalAddress",
+                            "addressLocality": "Čajniče",
+                            "addressRegion": "Republika Srpska",
+                            "addressCountry": "BA"
+                        },
+                        "touristType": ["Skiers", "Rafters", "Hikers", "Cultural Tourists"],
+                        "availableLanguage": ["sr", "en"],
+                        "nearbyAttraction": [
+                            {
+                                "@type": "SkiResort",
+                                "name": "Jahorina Ski Resort",
+                                "description": "Popularna ski destinacija sa modernim žičarama i dugim stazama",
+                                "distance": "90 km",
+                                "url": "https://jahorina.org"
+                            },
+                            {
+                                "@type": "TouristAttraction",
+                                "name": "Drina River Rafting",
+                                "description": "Rafting na kristalno čistoj Drini sa zadivljujućim pogledom na kanjon",
+                                "distance": "70 km"
+                            },
+                            {
+                                "@type": "TouristAttraction",
+                                "name": "Višegrad - UNESCO Most",
+                                "description": "Istorijski grad sa UNESCO mostom Mehmed-paše Sokolovića i Andrićgradom",
+                                "distance": "60 km",
+                                "sameAs": "https://en.wikipedia.org/wiki/Mehmed_Paša_Sokolović_Bridge"
+                            },
+                            {
+                                "@type": "Park",
+                                "name": "Planinarenje oko Čajniča",
+                                "description": "Slikovite planinske rute prema Hanini i Cicelju",
+                                "distance": "5 km"
+                            }
+                        ],
+                        "amenityFeature": [
+                            {
+                                "@type": "LocationFeatureSpecification",
+                                "name": "Pristup ski stazama Jahorina",
+                                "value": "90 km"
+                            },
+                            {
+                                "@type": "LocationFeatureSpecification",
+                                "name": "Pristup rafting centru Drina",
+                                "value": "70 km"
+                            },
+                            {
+                                "@type": "LocationFeatureSpecification",
+                                "name": "Pristup UNESCO spomeniku Višegrad",
+                                "value": "60 km"
+                            }
+                        ]
+                    })}
+                </script>
+
+                {/* Additional SEO for popular attractions */}
+                <meta name="geo.region" content="BA-SRP" />
+                <meta name="geo.placename" content="Čajniče, Jahorina, Višegrad, Drina" />
+                <link rel="canonical" href="https://your-domain.com#attractions" />
+            </Helmet>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Section Header */}
                 <div className="text-center mb-12">
