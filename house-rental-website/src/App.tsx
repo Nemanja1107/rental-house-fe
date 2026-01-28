@@ -84,7 +84,7 @@ function App() {
         <meta property="og:type" content="website" />
         <meta property="og:title" content="Smještaj Čajniče - Kuća za Iznajmljivanje | Prenoćište Bosna i Hercegovina" />
         <meta property="og:description" content="Luksuzni smještaj u Čajniču - kuća za iznajmljivanje sa 4 sobe. Blizu Jahorine (skijanje), Drine (rafting), Višegrada (UNESCO most). Idealno za porodice i grupe." />
-        <meta property="og:image" content="/images/house-exterior.jpg" />
+        <meta property="og:image" content="/LogoNovi.png" />
         <meta property="og:url" content="https://your-domain.com" />
         <meta property="og:site_name" content="Smještaj Čajniče" />
         <meta property="og:locale" content="sr_RS" />
@@ -93,7 +93,7 @@ function App() {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Smještaj Čajniče - Kuća za Iznajmljivanje" />
         <meta name="twitter:description" content="Luksuzni smještaj u Čajniču - kuća za iznajmljivanje sa 4 sobe, potpuno opremljena kuhinja, privatno kupatilo." />
-        <meta name="twitter:image" content="/images/house-exterior.jpg" />
+        <meta name="twitter:image" content="/LogoNovi.png" />
 
         {/* Additional SEO */}
         <meta name="robots" content="index, follow" />
@@ -157,10 +157,10 @@ function App() {
               "ratingValue": "5"
             },
             "image": [
-              "/images/house-exterior.jpg",
-              "/images/living-room.jpg",
-              "/images/bedroom.jpg",
-              "/images/kitchen.jpg"
+              "/LogoNovi.png",
+              "/LogoNovi.png",
+              "/LogoNovi.png",
+              "/LogoNovi.png"
             ],
             "nearbyAttraction": [
               {
