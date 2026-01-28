@@ -65,6 +65,7 @@ import cb4824 from './assets/images/CB0A4824.jpg';
 import cb4826 from './assets/images/CB0A4826.jpg';
 import cb4844 from './assets/images/CB0A4844.jpg';
 import cb4845 from './assets/images/CB0A4845.jpg';
+import cba4810 from './assets/images/CB0A4810.jpg';
 
 function App() {
   const [showFullGallery, setShowFullGallery] = useState(false);
@@ -294,7 +295,7 @@ function App() {
           <div className="min-h-screen bg-white">
             <HomepageSEO />
             <Navbar onAdminClick={() => setShowAdminPage(true)} />
-            <Hero backgroundImage={heroImage} />
+            <Hero backgroundImages={[heroImage, heroImage2, cba4810, cb4849]} />
             <main>
               <Gallery
                 images={previewImages}

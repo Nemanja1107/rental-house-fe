@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { Menu, X } from 'lucide-react';
 import { useTranslation } from '../../contexts/TranslationContext';
 import LanguageSwitcher from '../ui/LanguageSwitcher';
@@ -13,6 +13,10 @@ const Navbar: React.FC<NavbarProps> = ({ onAdminClick }) => {
     const { t } = useTranslation();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [activeSection, setActiveSection] = useState('home');
+
+    // Double-click detection for admin access
+    const clickCountRef = useRef(0);
+    const clickTimeoutRef = useRef<number | null>(null);
 
     const navItems: NavItem[] = useMemo(() => [
         { id: 'home', label: t('navHome'), href: '#home' },
@@ -34,6 +38,27 @@ const Navbar: React.FC<NavbarProps> = ({ onAdminClick }) => {
             });
         }
         setIsMenuOpen(false);
+    };
+
+    // Handle logo double-click for admin access
+    const handleLogoClick = () => {
+        clickCountRef.current += 1;
+
+        if (clickCountRef.current === 1) {
+            // Start timeout for double-click detection
+            clickTimeoutRef.current = setTimeout(() => {
+                clickCountRef.current = 0;
+            }, 500); // 500ms window for double-click
+        } else if (clickCountRef.current === 2) {
+            // Double-click detected - open admin
+            if (clickTimeoutRef.current) {
+                clearTimeout(clickTimeoutRef.current);
+            }
+            clickCountRef.current = 0;
+            if (onAdminClick) {
+                onAdminClick();
+            }
+        }
     };
 
     // Track active section based on scroll position
@@ -63,7 +88,10 @@ const Navbar: React.FC<NavbarProps> = ({ onAdminClick }) => {
             <div className="flex items-center h-16">
                 {/* Logo Area - Constrained to container */}
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex-1">
-                    <div className="flex items-center space-x-2 flex-shrink-0">
+                    <div
+                        className="flex items-center space-x-2 flex-shrink-0 cursor-default select-none"
+                        onClick={handleLogoClick}
+                    >
                         <img
                             src={logo}
                             alt="Rental House Logo"
@@ -90,12 +118,6 @@ const Navbar: React.FC<NavbarProps> = ({ onAdminClick }) => {
                         </button>
                     ))}
                     <LanguageSwitcher />
-                    <button
-                        onClick={onAdminClick}
-                        className="ml-4 px-3 py-2 text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors duration-200 whitespace-nowrap"
-                    >
-                        Admin
-                    </button>
                 </div>
 
                 {/* Mobile Menu Button and Language Switcher - Positioned at screen edge */}
@@ -131,12 +153,6 @@ const Navbar: React.FC<NavbarProps> = ({ onAdminClick }) => {
                                 {item.label}
                             </button>
                         ))}
-                        <button
-                            onClick={onAdminClick}
-                            className="block w-full text-left px-3 py-2 text-base font-medium rounded-md text-gray-700 hover:text-blue-600 hover:bg-gray-100 transition-colors duration-200"
-                        >
-                            Admin
-                        </button>
                     </div>
                 </div>
             )}
