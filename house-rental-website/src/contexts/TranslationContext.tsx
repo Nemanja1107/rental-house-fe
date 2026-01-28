@@ -35,7 +35,11 @@ export const TranslationProvider: React.FC<TranslationProviderProps> = ({ childr
     }, [language]);
 
     const t = (key: TranslationKey): string => {
-        return translations[language][key] || translations.en[key] || key;
+        const currentTranslation = translations[language];
+        const fallbackTranslation = translations.en;
+
+        // Try to get the translation from current language, fallback to English, or return the key
+        return (currentTranslation as any)[key] || (fallbackTranslation as any)[key] || key;
     };
 
     const value = {
