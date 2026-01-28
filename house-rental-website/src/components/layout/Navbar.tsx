@@ -3,7 +3,7 @@ import { Menu, X } from 'lucide-react';
 import { useTranslation } from '../../contexts/TranslationContext';
 import LanguageSwitcher from '../ui/LanguageSwitcher';
 import type { NavItem } from '../../types';
-import logo from '../../assets/images/Logo.png';
+import logo from '../../assets/images/LogoNoviTekts.png';
 
 interface NavbarProps {
     onAdminClick?: () => void;
