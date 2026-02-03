@@ -12,6 +12,7 @@ import About from './components/sections/About';
 import Reservation from './components/sections/Reservation';
 import AdminPage from './components/pages/AdminPage';
 import AvailabilityPage from './components/pages/AvailabilityPage';
+import AttractionDetailPage, { type AttractionId } from './components/pages/AttractionDetailPage';
 import FAQ from './components/sections/FAQ';
 import type { GalleryImage } from './types';
 
@@ -65,13 +66,20 @@ import cb4824 from './assets/images/CB0A4824.jpg';
 import cb4826 from './assets/images/CB0A4826.jpg';
 import cb4844 from './assets/images/CB0A4844.jpg';
 import cb4845 from './assets/images/CB0A4845.jpg';
-import cba4810 from './assets/images/CB0A4810.jpg';
 
 function App() {
   const [showFullGallery, setShowFullGallery] = useState(false);
   const [showAdminPage, setShowAdminPage] = useState(false);
   const [showAvailabilityPage, setShowAvailabilityPage] = useState(false);
   const [selectedRoomId, setSelectedRoomId] = useState<string>('');
+  const [selectedAttractionId, setSelectedAttractionId] = useState<AttractionId | null>(null);
+
+  // Scroll to top when attraction detail page is opened
+  useEffect(() => {
+    if (selectedAttractionId) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }, [selectedAttractionId]);
 
   // SEO Component for Homepage
   const HomepageSEO = () => {
@@ -85,7 +93,7 @@ function App() {
         <meta property="og:type" content="website" />
         <meta property="og:title" content="Smještaj Čajniče - Kuća za Iznajmljivanje | Prenoćište Bosna i Hercegovina" />
         <meta property="og:description" content="Luksuzni smještaj u Čajniču - kuća za iznajmljivanje sa 4 sobe. Blizu Jahorine (skijanje), Drine (rafting), Višegrada (UNESCO most). Idealno za porodice i grupe." />
-        <meta property="og:image" content="/LogoNovi.png" />
+        <meta property="og:image" content="/LogoNovi.png?v=2025" />
         <meta property="og:url" content="https://your-domain.com" />
         <meta property="og:site_name" content="Smještaj Čajniče" />
         <meta property="og:locale" content="sr_RS" />
@@ -94,9 +102,26 @@ function App() {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Smještaj Čajniče - Kuća za Iznajmljivanje" />
         <meta name="twitter:description" content="Luksuzni smještaj u Čajniču - kuća za iznajmljivanje sa 4 sobe, potpuno opremljena kuhinja, privatno kupatilo." />
-        <meta name="twitter:image" content="/LogoNovi.png" />
+        <meta name="twitter:image" content="/LogoNovi.png?v=2025" />
 
-        {/* Additional SEO */}
+        {/* Organization Structured Data */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "Smještaj Čajniče",
+            "url": "https://your-domain.com",
+            "logo": "https://your-domain.com/LogoNovi.png?v=2025",
+            "image": "https://your-domain.com/LogoNovi.png?v=2025",
+            "description": "Luksuzni smještaj u Čajniču - kuća za iznajmljivanje sa 4 sobe",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Čajniče",
+              "addressRegion": "Republika Srpska",
+              "addressCountry": "BA"
+            }
+          })}
+        </script>
         <meta name="robots" content="index, follow" />
         <meta name="author" content="Smještaj Čajniče" />
         <meta name="geo.region" content="BA" />
@@ -158,10 +183,10 @@ function App() {
               "ratingValue": "5"
             },
             "image": [
-              "/LogoNovi.png",
-              "/LogoNovi.png",
-              "/LogoNovi.png",
-              "/LogoNovi.png"
+              "/LogoNovi.png?v=2025",
+              "/LogoNovi.png?v=2025",
+              "/LogoNovi.png?v=2025",
+              "/LogoNovi.png?v=2025"
             ],
             "nearbyAttraction": [
               {
@@ -286,6 +311,14 @@ function App() {
             onBack={() => setShowAvailabilityPage(false)}
             onBookNow={handleBookNow}
           />
+        ) : selectedAttractionId ? (
+          <AttractionDetailPage
+            attractionId={selectedAttractionId}
+            onBack={() => {
+              setSelectedAttractionId(null);
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+          />
         ) : showFullGallery ? (
           <FullGallery
             images={allHouseImages}
@@ -295,14 +328,14 @@ function App() {
           <div className="min-h-screen bg-white">
             <HomepageSEO />
             <Navbar onAdminClick={() => setShowAdminPage(true)} />
-            <Hero backgroundImages={[heroImage, heroImage2, cba4810, cb4849]} />
+            <Hero backgroundImages={[heroImage, heroImage2, heroImage3, cb4838]} />
             <main>
               <Gallery
                 images={previewImages}
                 totalImages={allHouseImages.length}
                 onViewAllClick={() => setShowFullGallery(true)}
               />
-              <Attractions />
+              <Attractions onAttractionClick={(attractionId) => setSelectedAttractionId(attractionId)} />
               <About />
               <Rooms onCheckAvailability={() => setShowAvailabilityPage(true)} />
               <Reservation selectedRoomId={selectedRoomId} />

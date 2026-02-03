@@ -45,7 +45,7 @@ export interface NavItem {
 
 export interface ButtonProps {
     children: React.ReactNode;
-    variant?: 'primary' | 'secondary' | 'outline';
+    variant?: 'primary' | 'secondary' | 'outline' | 'ghost';
     size?: 'sm' | 'md' | 'lg';
     onClick?: () => void;
     disabled?: boolean;
@@ -58,6 +58,7 @@ export interface CardProps {
     className?: string;
     hover?: boolean;
     cursor?: 'default' | 'pointer' | 'none';
+    onClick?: () => void;
     'data-testid'?: string;
 }
 

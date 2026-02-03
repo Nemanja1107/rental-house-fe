@@ -6,6 +6,7 @@ const Card: React.FC<CardProps> = ({
     className = '',
     hover = false,
     cursor = 'default',
+    onClick,
     'data-testid': testId
 }) => {
     const baseClasses = 'bg-white rounded-lg shadow-md overflow-hidden border border-gray-100 transition-all duration-300 ease-in-out';
@@ -18,6 +19,7 @@ const Card: React.FC<CardProps> = ({
     return (
         <div
             className={`${baseClasses} ${hoverClasses} ${cursorClasses} ${className}`}
+            onClick={onClick}
             data-testid={testId}
         >
             {children}

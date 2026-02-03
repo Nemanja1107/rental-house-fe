@@ -51,6 +51,19 @@ export const en = {
     attractionsChurchDistance: '~500 m',
     attractionsChurchDescription: 'Church of the Dormition of the Holy Mother of God – One of the most important Orthodox churches in Bosnia and Herzegovina, known for its spiritual significance, centuries-old history, and the famous Čajniče Gospel. A peaceful place for prayer, cultural exploration, and experiencing authentic Orthodox heritage in a serene setting.',
 
+    // Additional Attractions
+    attractionsMosqueTitle: 'Mosque',
+    attractionsMosqueDistance: '~800 m',
+    attractionsMosqueDescription: 'Historic mosque in Čajniče – Beautiful example of Ottoman architecture with rich history dating back to the 16th century. A peaceful place for prayer and cultural exploration of Islamic heritage in this part of Bosnia and Herzegovina.',
+
+    attractionsCatholicChurchTitle: 'Catholic Church',
+    attractionsCatholicChurchDistance: '~500 m',
+    attractionsCatholicChurchDescription: 'Catholic Church of the Sacred Heart of Jesus – Modern Catholic church serving the local community. A place of peace and spirituality with beautiful architecture and warm welcoming atmosphere for all believers.',
+
+    attractionsForestBathingTitle: 'Forest Bathing & Natural Pool',
+    attractionsForestBathingDistance: '~1 km',
+    attractionsForestBathingDescription: 'Natural forest pool – Hidden oasis of peace where crystal-clear mountain water collects in natural rock pools. Perfect place for forest bathing, meditation, and complete connection with untouched nature.',
+
     // Rooms Section
     roomsTitle: 'Our Rooms',
     roomsSubtitle: 'Comfortable and well-appointed spaces designed for your relaxation and enjoyment.',
@@ -394,5 +407,220 @@ export const en = {
     localCulturalSites: 'Local cultural sites',
     traditionalCuisine: 'Traditional cuisine',
     idealConditionsText: 'Ideal conditions for hiking, rafting, sightseeing, and exploring the beautiful nature around Čajniče. Long daylight hours and comfortable temperatures make this the perfect time for outdoor adventures.',
-    peacefulRetreatText: 'Perfect for those seeking a peaceful mountain retreat. Enjoy cozy evenings by the fireplace, nearby skiing at Jahorina, and the authentic charm of winter in the Bosnian mountains.'
+    peacefulRetreatText: 'Perfect for those seeking a peaceful mountain retreat. Enjoy cozy evenings by the fireplace, nearby skiing at Jahorina, and the authentic charm of winter in the Bosnian mountains.',
+
+    // Attraction Detail Page
+    backToAttractions: 'Back to Attractions',
+    clickToLearnMore: 'Click to learn more →',
+    aboutThisAttraction: 'About This Attraction',
+    highlights: 'Highlights',
+    visitorTips: 'Visitor Tips',
+    quickInformation: 'Quick Information',
+    bestTime: 'Best Time',
+    duration: 'Duration',
+    difficulty: 'Difficulty',
+    distance: 'Distance',
+    contactInfo: 'Contact & Info',
+    contact: 'Contact',
+    website: 'Website',
+
+    // Attraction Detail Page - Skiing
+    skiingHighlight1: 'Over 20km of ski slopes',
+    skiingHighlight2: 'Modern ski lifts and equipment',
+    skiingHighlight3: 'Night skiing available',
+    skiingHighlight4: 'Professional ski schools',
+    skiingHighlight5: 'Equipment rental on-site',
+    skiingHighlight6: 'Mountain restaurants and cafés',
+    skiingHighlight7: 'Stunning panoramic views',
+    skiingBestTime: 'December - March',
+    skiingDuration: 'Full day recommended',
+    skiingDifficulty: 'All levels',
+    skiingContact: '+387 65 414 413',
+    skiingWebsite: 'https://jahorina.org',
+    skiingTip1: 'Book ski lessons in advance during peak season',
+    skiingTip2: 'Arrive early to avoid crowds',
+    skiingTip3: 'Check weather conditions before visiting',
+    skiingTip4: 'Bring warm clothing and sun protection',
+
+    // Attraction Detail Page - Rafting
+    raftingHighlight1: 'Crystal-clear emerald waters',
+    raftingHighlight2: 'Dramatic canyon scenery',
+    raftingHighlight3: 'Professional experienced guides',
+    raftingHighlight4: 'Suitable for all skill levels',
+    raftingHighlight5: 'Swimming opportunities',
+    raftingHighlight6: 'Traditional riverside restaurants',
+    raftingHighlight7: 'Wildlife spotting',
+    raftingBestTime: 'May - September',
+    raftingDuration: '4-8 hours',
+    raftingDifficulty: 'Easy to Moderate',
+    raftingContact: '+387 65 222 388',
+    raftingWebsite: 'https://www.rafting-tarom.com/',
+    raftingTip1: 'Bring waterproof bag for valuables',
+    raftingTip2: 'Wear quick-dry clothing',
+    raftingTip3: 'Apply waterproof sunscreen',
+    raftingTip4: 'Book in advance during summer',
+
+    // Attraction Detail Page - Hiking
+    hikingHighlight1: 'Well-marked hiking trails',
+    hikingHighlight2: 'Pristine mountain forests',
+    hikingHighlight3: 'Panoramic viewpoints',
+    hikingHighlight4: 'Mountain meadows and wildlife',
+    hikingHighlight5: 'Traditional mountain villages',
+    hikingHighlight6: 'Fresh mountain air',
+    hikingHighlight7: 'Photography opportunities',
+    hikingBestTime: 'April - October',
+    hikingDuration: '2-6 hours',
+    hikingDifficulty: 'Easy to Moderate',
+    hikingContact: 'Local guides available',
+    hikingWebsite: 'Contact accommodation for guides',
+    hikingTip1: 'Wear proper hiking boots',
+    hikingTip2: 'Bring plenty of water',
+    hikingTip3: 'Check weather conditions',
+    hikingTip4: 'Inform someone of your route',
+
+    // Attraction Detail Page - Excursions
+    excursionsHighlight1: 'UNESCO World Heritage Bridge',
+    excursionsHighlight2: 'Andrićgrad cultural complex',
+    excursionsHighlight3: 'Historic Ottoman architecture',
+    excursionsHighlight4: 'Traditional Bosnian restaurants',
+    excursionsHighlight5: 'Drina River promenade',
+    excursionsHighlight6: 'Cultural museums and galleries',
+    excursionsHighlight7: 'Scenic river views',
+    excursionsBestTime: 'Year-round',
+    excursionsDuration: 'Full day recommended',
+    excursionsDifficulty: 'Easy',
+    excursionsContact: '+387 58 620 821',
+    excursionsWebsite: 'https://visegradturizam.com',
+    excursionsTip1: 'Visit both the bridge and Andrićgrad',
+    excursionsTip2: 'Try traditional Bosnian cuisine',
+    excursionsTip3: 'Take a river boat tour',
+    excursionsTip4: 'Visit the Ivo Andrić museum',
+
+    // Attraction Detail Page - Nature
+    natureHighlight1: 'Untouched natural landscapes',
+    natureHighlight2: 'Diverse wildlife and birds',
+    natureHighlight3: 'Crystal-clear mountain streams',
+    natureHighlight4: 'Seasonal wildflowers',
+    natureHighlight5: 'Ancient forest ecosystems',
+    natureHighlight6: 'Peaceful meditation spots',
+    natureHighlight7: 'Sunrise and sunset viewpoints',
+    natureBestTime: 'Year-round',
+    natureDuration: '1-8 hours',
+    natureDifficulty: 'Easy',
+    natureContact: 'Self-guided',
+    natureWebsite: 'Ask accommodation for best spots',
+    natureTip1: 'Bring camera with extra batteries',
+    natureTip2: 'Early morning offers best light',
+    natureTip3: 'Respect wildlife and nature',
+    natureTip4: 'Follow Leave No Trace principles',
+
+    // Attraction Detail Page - Church
+    churchHighlight1: 'Historic Orthodox architecture',
+    churchHighlight2: 'Famous Čajniče Gospel',
+    churchHighlight3: 'Spiritual significance',
+    churchHighlight4: 'Peaceful prayer environment',
+    churchHighlight5: 'Cultural heritage site',
+    churchHighlight6: 'Traditional iconography',
+    churchHighlight7: 'Mountain setting',
+    churchBestTime: 'Year-round',
+    churchDuration: '30 minutes - 1 hour',
+    churchDifficulty: 'Easy',
+    churchContact: '+387 58 315 287',
+    churchWebsite: 'https://www.cocajnice.com/',
+    churchTip1: 'Dress modestly when visiting',
+    churchTip2: 'Respect prayer times',
+    churchTip3: 'Photography may be restricted',
+    churchTip4: 'Learn about local Orthodox traditions',
+
+    // Extended Attraction Descriptions
+    skiingExtendedDescription: 'Jahorina is one of the most renowned ski resorts in the Balkans, situated on the beautiful Jahorina mountain at an elevation of 1,916 meters. This modern ski center offers over 20 kilometers of excellently prepared slopes for all skiing levels, from beginners to experts. The resort features 8 modern cable cars and ski lifts that provide fast and comfortable transport to the mountain peak. During winter season, Jahorina offers night skiing on illuminated slopes, making the experience even more thrilling. Professional ski schools with licensed instructors provide training for all ages, while equipment can be rented directly on the mountain. Mountain restaurants and cafés offer traditional Bosnian cuisine and warm respite after a day on the slopes. Jahorina hosted the 1984 Winter Olympics, which speaks to the quality and standard of this ski center.',
+
+    raftingExtendedDescription: 'The Drina is one of the most beautiful rivers in Europe, famous for its crystal-clear emerald green waters flowing through spectacular canyons and pristine nature. Rafting on the Drina provides an unforgettable experience through dramatic landscapes, combining the excitement of rapids with calm sections perfect for relaxation and enjoying nature. Professional guides with years of experience lead groups through the most beautiful parts of the river, sharing stories about local history and legends. During the descent, visitors have the opportunity to see traditional wooden houses on water, known as "houses on the Drina," as well as the rich flora and fauna of this area. The river offers opportunities for swimming in clean waters, and along the route there are traditional restaurants where you can try local specialties like famous fish dishes. The rafting season runs from May to September when weather conditions are most favorable.',
+
+    hikingExtendedDescription: 'The mountains around Čajniče represent a true paradise for hiking enthusiasts and nature lovers. Well-marked trails lead through untouched forests of beech, fir and spruce, across mountain meadows covered with wildflowers, to spectacular viewpoints offering views of the entire region. The most famous destinations are Hanina (1,340m) and Cicelj (1,245m), mountains that offer different levels of hiking difficulty. Trails are suitable for both beginners and experienced hikers, with clearly marked routes and rest areas. During hiking, visitors can see traditional mountain villages where authentic way of life is still preserved, as well as rich wildlife including deer, wild boar, and over 150 bird species. Fresh mountain air, the silence of untouched nature, and opportunities for photographing spectacular landscapes make this experience unforgettable. The best time for hiking is from April to October.',
+
+    excursionsExtendedDescription: 'Višegrad is a historic town on the Drina that represents a true cultural treasure of Bosnia and Herzegovina. It is most famous for the UNESCO World Heritage Mehmed Paša Sokolović Bridge from the 16th century, a masterpiece of Ottoman architecture that inspired Ivo Andrić for his famous novel "The Bridge on the Drina." Besides the historic bridge, Višegrad offers Andrićgrad, a cultural complex built in honor of Nobel laureate Ivo Andrić, representing a reconstruction of a traditional Bosnian town with museums, galleries, library and cultural centers. The town abounds with Ottoman monuments, traditional bazaars and authentic restaurants where you can try specialties of Bosnian cuisine. A walk along the Drina provides beautiful views of the river and surrounding mountains, while a boat ride offers a unique perspective of the bridge and town. Višegrad is an ideal destination for a day trip that combines history, culture, gastronomy and natural beauty.',
+
+    natureExtendedDescription: 'The area around Čajniče represents a true paradise for nature photography enthusiasts and all those seeking peace and tranquility in an untouched natural environment. Diverse landscapes include dense forests, crystal-clear mountain streams, meadows covered with wildflowers, and dramatic rocks that provide spectacular backgrounds for photography. The area is home to rich flora and fauna - here you can see deer, wild boar, foxes, as well as over 150 bird species including rare species like eagles and falcons. Mountain streams create small waterfalls and natural pools ideal for refreshment during summer days. Different seasons offer unique photographic opportunities - spring awakening of nature, summer lushness, autumn colors, and winter magic. The best places for photography include viewpoints overlooking the entire valley, hidden clearings in the forest, and banks of mountain streams. This is an ideal place for meditation, relaxation and connecting with nature.',
+
+    churchExtendedDescription: 'The Church of the Dormition of the Holy Mother of God in Čajniče is one of the most important Orthodox shrines in Bosnia and Herzegovina, with a rich history reaching into the distant past. The church is famous for the renowned Čajniče Gospel from the 14th century, one of the most valuable monuments of Serbian medieval literature and art. The church architecture represents a blend of Byzantine and local building styles, with beautiful frescoes and icons that testify to the spiritual and cultural heritage of this region. The church is located in a peaceful mountain environment, giving it a special atmosphere of tranquility and spirituality. Besides its religious function, the church represents an important cultural-historical monument that attracts visitors interested in Orthodox heritage and Byzantine art. Around the church is a cemetery with old tombstones that testify to the history of local families. A visit to this church provides an opportunity for spiritual rest, cultural education and acquaintance with authentic Orthodox traditions of this region.',
+
+    // New Attractions Extended Descriptions
+    mosqueExtendedDescription: 'The historic mosque in Čajniče represents a valuable monument of Ottoman architecture and Islamic heritage in this part of Bosnia and Herzegovina. Built in the 16th century during Ottoman rule, the mosque is a witness to the rich cultural and religious life that existed in this region through the centuries. The mosque architecture reflects typical characteristics of Ottoman sacred construction with simple but elegant lines, stone walls and traditional minaret. The interior of the mosque is characterized by a peaceful atmosphere suitable for prayer and contemplation. Throughout history, the mosque served not only as a place of worship but also as a center of education and social life for the local Muslim community. Today it represents an important cultural-historical monument that testifies to the multi-ethnic and multi-religious character of this region. A visit to the mosque provides an opportunity to learn about Islamic heritage and architecture, as well as to understand the rich cultural diversity of Bosnia and Herzegovina.',
+
+    catholicChurchExtendedDescription: 'The Catholic Church of the Sacred Heart of Jesus in Čajniče represents an important religious and cultural center for the local Catholic community. Built in recent times, the church reflects modern trends in sacred architecture, combining traditional elements with a contemporary design approach. The church serves as a place of worship, spiritual gathering and cultural activities for Catholics in this part of Bosnia and Herzegovina. The interior of the church is characterized by a warm atmosphere, beautiful stained glass windows and carefully selected artworks that contribute to the spiritual atmosphere of the space. The church organizes regular masses, religious ceremonies and cultural events that bring the community together. Besides its primary religious function, the church represents a place of dialogue and understanding between different religious communities in Čajniče. A visit to this church provides an opportunity for spiritual rest, prayer and acquaintance with Catholic traditions and values in a multi-religious environment.',
+
+    forestBathingExtendedDescription: 'The natural forest pool around Čajniče represents one of the most beautiful hidden attractions of this region, where crystal-clear mountain water naturally collects in rock depressions creating perfect natural pools. This unique place combines the concept of forest bathing - a Japanese practice of conscious stay in nature, with the possibility of refreshing in natural waters. Surrounded by dense forests of beech, fir and spruce, this natural complex provides complete peace and silence, far from city noise. The water in the pools is exceptionally clean and fresh, fed by mountain springs and rainwater, ideal for swimming during warmer months. The area around the pools abounds with rich flora and fauna - here you can see rare plant species, butterflies, birds and small wild animals. Forest bathing in this place enables complete relaxation of all senses, stress reduction and energy renewal through direct contact with nature. This is an ideal place for meditation, outdoor yoga exercises, nature photography and simply enjoying the untouched beauty of Bosnian mountain nature.',
+
+    // New Attractions Highlights
+    // Mosque
+    mosqueHighlight1: '16th century Ottoman architecture',
+    mosqueHighlight2: 'Traditional minaret',
+    mosqueHighlight3: 'Historical significance',
+    mosqueHighlight4: 'Peaceful prayer atmosphere',
+    mosqueHighlight5: 'Cultural heritage site',
+    mosqueHighlight6: 'Stone construction',
+    mosqueHighlight7: 'Multi-religious dialogue',
+
+    // Catholic Church
+    catholicChurchHighlight1: 'Modern sacred architecture',
+    catholicChurchHighlight2: 'Beautiful stained glass',
+    catholicChurchHighlight3: 'Warm atmosphere',
+    catholicChurchHighlight4: 'Regular masses and ceremonies',
+    catholicChurchHighlight5: 'Cultural events',
+    catholicChurchHighlight6: 'Community activities',
+    catholicChurchHighlight7: 'Interfaith dialogue',
+
+    // Forest Bathing
+    forestBathingHighlight1: 'Natural rock pools',
+    forestBathingHighlight2: 'Crystal-clear mountain water',
+    forestBathingHighlight3: 'Forest bathing experience',
+    forestBathingHighlight4: 'Complete silence and peace',
+    forestBathingHighlight5: 'Rich flora and fauna',
+    forestBathingHighlight6: 'Nature meditation',
+    forestBathingHighlight7: 'Photography opportunities',
+
+    // New Attractions Best Time, Duration, Difficulty
+    mosqueBestTime: 'Year-round',
+    mosqueDuration: '30 minutes - 1 hour',
+    mosqueDifficulty: 'Easy',
+    mosqueContact: 'Local Islamic community',
+    mosqueWebsite: 'Contact local guides',
+
+    catholicChurchBestTime: 'Year-round',
+    catholicChurchDuration: '30 minutes - 1 hour',
+    catholicChurchDifficulty: 'Easy',
+    catholicChurchContact: 'Local Catholic parish',
+    catholicChurchWebsite: 'Contact local parish',
+
+    forestBathingBestTime: 'May - September',
+    forestBathingDuration: '2-4 hours',
+    forestBathingDifficulty: 'Easy to Moderate',
+    forestBathingContact: 'Self-guided',
+    forestBathingWebsite: 'Ask accommodation for best route',
+
+    // New Attractions Tips
+    mosqueTip1: 'Dress modestly when visiting',
+    mosqueTip2: 'Respect prayer times',
+    mosqueTip3: 'Remove shoes before entering',
+    mosqueTip4: 'Learn about Islamic traditions',
+
+    catholicChurchTip1: 'Check mass schedule',
+    catholicChurchTip2: 'Respect religious ceremonies',
+    catholicChurchTip3: 'All visitors welcome',
+    catholicChurchTip4: 'Enjoy the peaceful atmosphere',
+
+    forestBathingTip1: 'Bring swimwear and towel',
+    forestBathingTip2: 'Wear comfortable walking shoes',
+    forestBathingTip3: 'Respect nature - leave no trace',
+    forestBathingTip4: 'Best to visit morning or afternoon',
+
+    // Gallery
+    gallery: 'Gallery',
+    clickToView: 'Click to view',
+    galleryHoverHint: 'Hover over thumbnails to preview (desktop)',
+
+    // Common terms
+    accommodation: 'accommodation',
+    fromAccommodation: 'from accommodation'
 };
