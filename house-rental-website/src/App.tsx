@@ -94,9 +94,12 @@ function App() {
         <meta property="og:title" content="Smještaj Čajniče - Kuća za Iznajmljivanje | Prenoćište Bosna i Hercegovina" />
         <meta property="og:description" content="Luksuzni smještaj u Čajniču - kuća za iznajmljivanje sa 4 sobe. Blizu Jahorine (skijanje), Drine (rafting), Višegrada (UNESCO most). Idealno za porodice i grupe." />
         <meta property="og:image" content="/LogoNovi.png?v=2025" />
-        <meta property="og:url" content="https://your-domain.com" />
+        <meta property="og:url" content="https://visitcajnice.com" />
         <meta property="og:site_name" content="Smještaj Čajniče" />
         <meta property="og:locale" content="sr_RS" />
+
+        {/* Canonical URL */}
+        <link rel="canonical" href="https://visitcajnice.com/" />
 
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
@@ -110,9 +113,9 @@ function App() {
             "@context": "https://schema.org",
             "@type": "Organization",
             "name": "Smještaj Čajniče",
-            "url": "https://your-domain.com",
-            "logo": "https://your-domain.com/LogoNovi.png?v=2025",
-            "image": "https://your-domain.com/LogoNovi.png?v=2025",
+            "url": "https://visitcajnice.com",
+            "logo": "https://visitcajnice.com/LogoNovi.png?v=2025",
+            "image": "https://visitcajnice.com/LogoNovi.png?v=2025",
             "description": "Luksuzni smještaj u Čajniču - kuća za iznajmljivanje sa 4 sobe",
             "address": {
               "@type": "PostalAddress",
@@ -136,7 +139,7 @@ function App() {
             "@type": "LodgingBusiness",
             "name": "Smještaj Čajniče - Kuća za Iznajmljivanje",
             "description": "Luksuzni smještaj u Čajniču sa 4 sobe, potpuno opremljena kuhinja, privatno kupatilo. Blizu Jahorine (skijanje), Drine (rafting), Višegrada (UNESCO most). Idealno za porodice i grupe.",
-            "url": "https://your-domain.com",
+            "url": "https://visitcajnice.com",
             "telephone": "+387-XX-XXX-XXX",
             "email": "info@smjestaj-cajnice.com",
             "address": {

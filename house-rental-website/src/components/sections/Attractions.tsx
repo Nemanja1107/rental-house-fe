@@ -135,7 +135,7 @@ const Attractions: React.FC<AttractionsProps> = ({ onAttractionClick }) => {
                         "@type": "TouristAttraction",
                         "name": "Atrakcije oko Čajniča - Turistički Smještaj",
                         "description": "Smještaj u Čajniču sa pristupom najboljim atrakcijama: Jahorina skijanje, Drina rafting, Višegrad UNESCO most",
-                        "url": "https://your-domain.com#attractions",
+                        "url": "https://visitcajnice.com/#attractions",
                         "address": {
                             "@type": "PostalAddress",
                             "addressLocality": "Čajniče",
@@ -195,7 +195,7 @@ const Attractions: React.FC<AttractionsProps> = ({ onAttractionClick }) => {
                 {/* Additional SEO for popular attractions */}
                 <meta name="geo.region" content="BA-SRP" />
                 <meta name="geo.placename" content="Čajniče, Jahorina, Višegrad, Drina" />
-                <link rel="canonical" href="https://your-domain.com#attractions" />
+                <link rel="canonical" href="https://visitcajnice.com/#attractions" />
             </Helmet>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Section Header */}
